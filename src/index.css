@@ -1,0 +1,15 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+body * {
+	box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica, sans-serif, Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
