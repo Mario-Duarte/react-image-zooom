@@ -107,7 +107,9 @@ class ImageZoom extends React.Component {
 
     handleMove(e) {
         // Handle the mouse move events
-        this.zoomInPosition(e);
+        if ( this.state.zoomed === "0" ) {
+            this.zoomInPosition(e);
+        }
     }
 
     handleLeave() {
