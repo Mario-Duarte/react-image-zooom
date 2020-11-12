@@ -137,8 +137,9 @@ class ImageZoom extends React.Component {
 
     render() {
         let figureClass = this.state.imgData ? 'loaded' : 'loading';
+        let figureZoomed = this.state.zoomed === "0" ? "zoomed" : "fullView";
         return(
-            <Figure id={this.props.id} className={[figureClass, this.props.className].join(' ')} style={{ backgroundImage: "url("+this.state.imgData+")", backgroundSize: this.props.zoom+"%", backgroundPosition: this.state.position }} onClick={ e => this.handleClick(e) } onMouseMove={ e => this.handleMove(e) } onMouseLeave={ () => this.handleLeave() }>
+            <Figure id={this.props.id} className={[figureClass, figureZoomed, this.props.className].join(' ')} style={{ backgroundImage: "url("+this.state.imgData+")", backgroundSize: this.props.zoom+"%", backgroundPosition: this.state.position }} onClick={ e => this.handleClick(e) } onMouseMove={ e => this.handleMove(e) } onMouseLeave={ () => this.handleLeave() }>
 				<Img id="imageZoom" src={this.state.imgData} alt={this.props.alt} style={{opacity: this.state.zoomed}} width={this.props.width} height={this.props.height} />
 			</Figure>
             );
