@@ -47,7 +47,7 @@ function App() {
 
         <p>By default the component will set a zoom of 200% on the image if no attribute was set, it will also set default values to the <strong>width</strong> (100%), <strong>height</strong> (auto) and <strong>alt</strong> (This is an imageZoom image) attributes.</p>
 
-        <p>You can also pass in secondary attributes such as <strong>id</strong> and <strong>className</strong> to enable you to style the component more easily, in addition to these, the component will also update it's className based on it's state, for example, <strong>loading</strong> and <strong>loaded</strong> for when the component is downloading the image passed, and <strond>fullView</strond> and <strong>zoomed</strong> for when the user zooms in on the image. These can be easily targeted in conjunction with the attribute className to adapt the style of the component depending of implementation.</p>
+        <p>You can also pass in secondary attributes such as <strong>id</strong> and <strong>className</strong> to enable you to style the component more easily, in addition to these, the component will also update it's className based on it's state, for example, <strong>loading</strong> and <strong>loaded</strong> for when the component is downloading the image passed, and <strong>fullView</strong> and <strong>zoomed</strong> for when the user zooms in on the image. These can be easily targeted in conjunction with the attribute className to adapt the style of the component depending of implementation.</p>
 
         <p>Here is an example of a custom gallery:</p>
 
