@@ -12,7 +12,8 @@ const Figure = styled.figure`
     width: auto;
 	overflow: hidden;
     cursor: zoom-in;
-    min-height: 80px;
+    min-height: 25vh;
+    background-color: #eee;
     margin: 0;
     &:before {
         content: "";
@@ -30,9 +31,8 @@ const Figure = styled.figure`
     &:after {
         content: "";
         position: absolute;
-        top: 10px;
-        left: -25px;
-        margin-left: 50%;
+        top: calc(50% - 25px);
+        left: calc(50% - 25px);
         width: 50px;
         height: 50px;
         border-radius: 50%;
