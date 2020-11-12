@@ -1,4 +1,104 @@
 .App {
   position: relative;
   width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.App header {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 60px 40px;
+}
+
+.App code {
+  display: block;
+  position: relative;
+  color: #eee;
+  background-color: #333;
+  padding: 10px;
+  text-align: left;
+  transition: all 0.4s ease-in-out;
+}
+
+.App code:hover {
+  background-color: #000;
+}
+
+.App .container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: justify;
+  padding: 60px 40px;
+}
+
+.App .container .gallery {
+  position: relative;
+  width: 100%;
+  background-color: #ddd;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.App .container .gallery .gallery-img {
+  width: 100%;
+  border: 10px solid #fff;
+  margin: 5px auto;
+}
+
+.App .container .demo-gallery {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.App .container .demo-gallery .gallery-img {
+  width: 100%;
+  border: 10px solid #000;
+  margin: 5px auto;
+  opacity: 0.9;
+  transition: transform 0.4s ease-in-out,
+                  opacity 0.4s ease-in-out;
+}
+
+.App .container .demo-gallery .gallery-img:hover {
+  transform: scale(0.95);
+  opacity: 1;
+}
+
+.App footer {
+  position: relative;
+  width: 100%;
+  background-color: #333;
+  text-align: center;
+  padding: 20px;
+  color: #fff;
+}
+
+@media all and (min-width: 768px) {
+  .App .container .gallery .gallery-img {
+    width: calc(50% - 10px);
+  }
+
+  .App .container .demo-gallery .gallery-img {
+    width: calc(50% - 10px);
+  }
 }

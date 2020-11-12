@@ -11,5 +11,16 @@ body {
   font-family: Helvetica, sans-serif, Arial;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
 }
 
+a, a:visited {
+  color: #e74c3c;
+  text-decoration: none;
+  font-weight: 400;
+  transition: all 0.4s ease-in-out;
+}
+
+a:focus, a:hover {
+  text-decoration: underline;
+}
