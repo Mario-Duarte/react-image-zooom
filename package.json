@@ -52,5 +52,6 @@
         "plugins": [
             "@babel/plugin-transform-react-jsx"
         ]
-    }
+    },
+    "publishConfig": { "registry": "https://npm.pkg.github.com/" }
 }
