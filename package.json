@@ -1,41 +1,56 @@
 {
-  "homepage" : "https://mario-duarte.github.io/ImageZoom/",
-  "name": "react-image-zoom",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.5",
-    "@testing-library/react": "^11.1.1",
-    "@testing-library/user-event": "^12.2.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0",
-    "react-scripts": "4.0.0",
-    "styled-components": "^5.2.1",
-    "web-vitals": "^0.2.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+    "homepage": "https://mario-duarte.github.io/ImageZoom/",
+    "name": "react-image-zoom",
+    "version": "0.1.0",
+    "main": "./lib/imageZoom.js",
+    "license": "GPL",
+    "homepage": "https://mario-duarte.github.io/ImageZoom/",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Mario-Duarte/ImageZoom"
+    },
+    "keywords": [
+      "react",
+      "zoom",
+      "image zoom",
+      "react image zoom",
+      "react zoom",
+      "react component",
+      "component"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "scripts": {
+        "build": "webpack"
+    },
+    "peerDependencies": {
+        "prop-types": "^15.7.2",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "styled-components": "^5.2.1"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.11.4",
+        "@babel/plugin-transform-react-jsx": "^7.10.4",
+        "@babel/preset-env": "^7.11.0",
+        "@babel/preset-react": "^7.10.4",
+        "babel-loader": "^8.1.0",
+        "path": "^0.12.7",
+        "prop-types": "^15.7.2",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "styled-components": "^5.2.1",
+        "webpack": "^5.4.0",
+        "webpack-cli": "^4.2.0"
+    },
+    "author": {
+      "name": "Mario Duarte"
+    },
+    "babel": {
+        "presets": [
+            "@babel/preset-react",
+            "@babel/preset-env"
+        ],
+        "plugins": [
+            "@babel/plugin-transform-react-jsx"
+        ]
+    }
 }
