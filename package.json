@@ -1,22 +1,21 @@
 {
     "homepage": "https://mario-duarte.github.io/ImageZoom/",
-    "name": "react-image-zoom",
-    "version": "0.1.0",
+    "name": "@mario-duarte/react-imagezoom",
+    "version": "1.0.0",
     "main": "./lib/imageZoom.js",
     "license": "GPL",
-    "homepage": "https://mario-duarte.github.io/ImageZoom/",
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/Mario-Duarte/ImageZoom"
+        "type": "git",
+        "url": "git+https://github.com/Mario-Duarte/ImageZoom"
     },
     "keywords": [
-      "react",
-      "zoom",
-      "image zoom",
-      "react image zoom",
-      "react zoom",
-      "react component",
-      "component"
+        "react",
+        "zoom",
+        "image zoom",
+        "react image zoom",
+        "react zoom",
+        "react component",
+        "component"
     ],
     "scripts": {
         "build": "webpack"
@@ -26,6 +25,9 @@
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "styled-components": "^5.2.1"
+    },
+    "dependencies": {
+      "styled-components": "^5.2.1"
     },
     "devDependencies": {
         "@babel/core": "^7.11.4",
@@ -42,7 +44,7 @@
         "webpack-cli": "^4.2.0"
     },
     "author": {
-      "name": "Mario Duarte"
+        "name": "Mario Duarte"
     },
     "babel": {
         "presets": [
@@ -53,5 +55,7 @@
             "@babel/plugin-transform-react-jsx"
         ]
     },
-    "publishConfig": { "registry": "https://npm.pkg.github.com/" }
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    }
 }
