@@ -18,7 +18,7 @@ function App() {
         <p>Small and light weight!<br/>Give it a try.</p>
       </header>
 
-      <ImageZoom src="https://picsum.photos/seed/000/1920/1080" alt="A image to apply the ImageZoom plugin" zoom="250" width="100%" height="auto" />
+      <ImageZoom className="fullImageZoom" src="https://picsum.photos/seed/000/1920/1080" alt="A image to apply the ImageZoom plugin" zoom="250" width="100%" height="auto" />
 
       
       <div className="container">

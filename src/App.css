@@ -32,6 +32,10 @@
   background-color: #000;
 }
 
+.App .fullImageZoom {
+  width: 100%;
+}
+
 .App .container {
   position: relative;
   width: 100%;
