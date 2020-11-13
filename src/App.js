@@ -15,7 +15,7 @@ function App() {
       <header>
         <h1>&lt;ImageZoom&#x0002F;&gt;</h1>
         <p>Simple React component that will allow users to zoom in on your images, perfect for product images and galleries!</p>
-        <p>Small and light weight!<br/>Give it a try.</p>
+        <p>Small and light weight!<br/>Give it a try and see the <a href="https://github.com/Mario-Duarte/ImageZoom" target="_blank" rel="noreferrer>docs here</a>.</p>
       </header>
 
       <ImageZoom className="fullImageZoom" src="https://picsum.photos/seed/000/1920/1080" alt="A image to apply the ImageZoom plugin" zoom="250" width="100%" height="auto" />
