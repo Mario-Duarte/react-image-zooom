@@ -21,10 +21,8 @@
         "build": "webpack"
     },
     "peerDependencies": {
-        "prop-types": "^15.7.2",
         "react": "^17.0.1",
-        "react-dom": "^17.0.1",
-        "styled-components": "^5.2.1"
+        "react-dom": "^17.0.1"
     },
     "dependencies": {
       "styled-components": "^5.2.1"
