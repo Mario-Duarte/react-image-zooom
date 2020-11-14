@@ -1,7 +1,7 @@
 {
     "homepage": "https://mario-duarte.github.io/ImageZoom/",
     "name": "@mario-duarte/react-imagezoom",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "./lib/imageZoom.js",
     "license": "GPL",
     "repository": {
