@@ -1,5 +1,5 @@
 {
-    "homepage": "https://mario-duarte.github.io/ImageZoom/",
+    "homepage": "https://mario-duarte.github.io/react-image-zooom/",
     "name": "react-image-zooom",
     "version": "1.0.0",
     "main": "./lib/react-image-zooom.js",
