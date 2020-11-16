@@ -1,5 +1,5 @@
 {
-  "homepage" : "https://mario-duarte.github.io/ImageZoom/",
+  "homepage": "https://mario-duarte.github.io/react-image-zooom/",
   "name": "react-image-zoom",
   "version": "0.1.0",
   "private": true,
@@ -10,6 +10,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "react-image-zooom": "^1.0.1",
     "react-scripts": "4.0.0",
     "styled-components": "^5.2.1",
     "web-vitals": "^0.2.4"

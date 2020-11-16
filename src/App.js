@@ -1,6 +1,6 @@
 import './App.css';
 import Helmet from "react-helmet";
-import ImageZoom from "./imageZoom";
+import ImageZoom from "react-image-zooom";
 
 function App() {
   let year = new Date();
