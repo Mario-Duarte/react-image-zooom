@@ -8,14 +8,7 @@ View it in action [on this demo page!](https://mario-duarte.github.io/ImageZoom/
 
 ## How to install
 
-Create a `.npmrc` if you don't have one already and add the following line to it:<br/>
-```@mario-duarte:registry=https://npm.pkg.github.com/```
-
 Run the following command on your terminal:<br/>
-```npm install @mario-duarte/react-imagezoom```
-
-or add the following line to your dependencies on the pacakage.json file:<br/>
-```"@mario-duarte/react-imagezoom": "^1.0.0"```
+``
 
 ## How to Use
-
