@@ -128,14 +128,11 @@ function ImageZoom(props) {
         setZoomed("0");
         let img = new Image();
         img.src = props.src;
-        console.log(zoomed);
         img.addEventListener("load", () => {
             // gracefully disable the loading animation
             setTimeout(() => {
                 setZoomed("1");
                 setImgData(img.src);
-                console.log(img.src);
-                console.log({ zoomed, imgData });
             }, 200);
         });
     }, []);
