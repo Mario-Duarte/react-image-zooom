@@ -1,8 +1,8 @@
-# ![Logo-ImageZoom](https://github.com/Mario-Duarte/ImageZoom/blob/demo/public/logo28.png?raw=true) ImageZoom - React Component
+# ![Logo-ImageZooom](https://github.com/Mario-Duarte/react-ImageZoom/blob/demo/public/logo28.png?raw=true) ImageZooom - React Component
 
 Simple React component that will allow users to zoom in on your images, perfect for product images and galleries!
 
-View it in action [on this demo page!](https://mario-duarte.github.io/ImageZoom/)
+View it in action [on this demo page!](https://mario-duarte.github.io/react-ImageZooom/)
 
 ## Why?
 
@@ -10,7 +10,7 @@ As a long user of jQuery I have developed many plugins over the years that have 
 
 I like my plugins(now components) to be as flexible as possible and to not get in the way of the styling of the app/site that is been implemented to and this is no different.
 
-Want to come along on this journey and/or have some great ideas on how to improve this component? [Check out the repo here!](https://github.com/Mario-Duarte/ImageZoom)
+Want to come along on this journey and/or have some great ideas on how to improve this component? [Check out the repo here!](https://github.com/Mario-Duarte/react-ImageZoom)
 
 ## How it works?
 
@@ -49,15 +49,15 @@ export default myZoomableImg;
 
 This component accepts the following attributes:
 
-| Prop | Default value | required |
-| ----- |:--------------:| ---------:|
-| className | Null | false |
-| id | Null | false |
-| src | Null | true |
-| zoom | 200 | false |
-| alt | "This is an imageZoom image" | false |
-| width | "100%" | false |
-| height | "auto" | false |
+| Prop      |        Default value         | required |
+| --------- | :--------------------------: | -------: |
+| className |             Null             |    false |
+| id        |             Null             |    false |
+| src       |             Null             |     true |
+| zoom      |             200              |    false |
+| alt       | "This is an imageZoom image" |    false |
+| width     |            "100%"            |    false |
+| height    |            "auto"            |    false |
 
 As you can see above, it is very similar to the standard `<img />` tag, now let's look at a more advanced example of a gallery using the component.
 
@@ -80,8 +80,8 @@ export default myZoomableImg;
 ```
 
 Note that you can also set different Zoom levels per image.<br/>
-For more examples [see this demo page!](https://mario-duarte.github.io/ImageZoom/)
+For more examples [see this demo page!](https://mario-duarte.github.io/react-ImageZooom/)
 
 ## Bugs and issues
 
-Please report all bugs and issues [here](https://github.com/Mario-Duarte/ImageZoom/issues).
+Please report all bugs and issues [here](https://github.com/Mario-Duarte/react-ImageZoom/issues).
