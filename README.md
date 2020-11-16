@@ -10,7 +10,7 @@ As a long user of jQuery I have developed many plugins over the years that have 
 
 I like my plugins(now components) to be as flexible as possible and to not get in the way of the styling of the app/site that is been implemented to and this is no different.
 
-Want to come along on this journey and/or have some great ideas on how to improve this component? [Check out the repo here!](git@github.com:Mario-Duarte/react-image-zooom.git)
+Want to come along on this journey and/or have some great ideas on how to improve this component? [Check out the repo here!](https://github.com/Mario-Duarte/react-image-zooom)
 
 ## How it works?
 
