@@ -2,10 +2,10 @@ var path = require('path');
 
 module.exports = {
     mode: 'production',
-    entry: './src/imageZoom.js',
+    entry: './src/react-imageZoom.js',
     output: {
         path: path.resolve('lib'),
-        filename: 'imageZoom.js',
+        filename: 'react-imageZoom.js',
         libraryTarget: 'commonjs2'
     },
     module: {
@@ -16,5 +16,26 @@ module.exports = {
                 loader: 'babel-loader'
             }
         ]
+    },
+    resolve: {
+        alias: {
+            'react': path.resolve(__dirname, './node_modules/react'),
+            'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+        }
+    },
+    externals: {
+        // Don't bundle react or react-dom      
+        react: {
+            commonjs: "react",
+            commonjs2: "react",
+            amd: "React",
+            root: "React"
+        },
+        "react-dom": {
+            commonjs: "react-dom",
+            commonjs2: "react-dom",
+            amd: "ReactDOM",
+            root: "ReactDOM"
+        }
     }
 }
