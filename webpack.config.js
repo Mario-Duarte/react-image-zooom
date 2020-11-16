@@ -2,10 +2,10 @@ var path = require('path');
 
 module.exports = {
     mode: 'production',
-    entry: './src/react-imageZoom.js',
+    entry: './src/react-image-zooom.js',
     output: {
         path: path.resolve('lib'),
-        filename: 'react-imageZoom.js',
+        filename: 'react-image-zooom.js',
         libraryTarget: 'commonjs2'
     },
     module: {

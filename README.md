@@ -1,8 +1,8 @@
-# ![Logo-ImageZooom](https://github.com/Mario-Duarte/react-ImageZooom/blob/demo/public/logo28.png?raw=true) ImageZooom - React Component
+# ![Logo-ImageZooom](https://github.com/Mario-Duarte/react-ImageZooom/blob/demo/public/logo28.png?raw=true) Image-Zooom a React Component
 
 Simple React component that will allow users to zoom in on your images, perfect for product images and galleries!
 
-View it in action [on this demo page!](https://mario-duarte.github.io/react-ImageZooom/)
+View it in action [on this demo page!](https://mario-duarte.github.io/react-image-zooom/)
 
 ## Why?
 
@@ -10,7 +10,7 @@ As a long user of jQuery I have developed many plugins over the years that have 
 
 I like my plugins(now components) to be as flexible as possible and to not get in the way of the styling of the app/site that is been implemented to and this is no different.
 
-Want to come along on this journey and/or have some great ideas on how to improve this component? [Check out the repo here!](https://github.com/Mario-Duarte/react-ImageZooom)
+Want to come along on this journey and/or have some great ideas on how to improve this component? [Check out the repo here!](git@github.com:Mario-Duarte/react-image-zooom.git)
 
 ## How it works?
 
@@ -80,8 +80,8 @@ export default myZoomableImg;
 ```
 
 Note that you can also set different Zoom levels per image.<br/>
-For more examples [see this demo page!](https://mario-duarte.github.io/react-ImageZooom/)
+For more examples [see this demo page!](https://mario-duarte.github.io/react-image-zooom/)
 
 ## Bugs and issues
 
-Please report all bugs and issues [here](https://github.com/Mario-Duarte/react-ImageZoom/issues).
+Please report all bugs and issues [here](git@github.com:Mario-Duarte/react-image-zooom.git/issues).
