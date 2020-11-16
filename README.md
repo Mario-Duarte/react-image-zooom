@@ -1,4 +1,4 @@
-# ![Logo-ImageZooom](https://github.com/Mario-Duarte/react-ImageZoom/blob/demo/public/logo28.png?raw=true) ImageZooom - React Component
+# ![Logo-ImageZooom](https://github.com/Mario-Duarte/react-ImageZooom/blob/demo/public/logo28.png?raw=true) ImageZooom - React Component
 
 Simple React component that will allow users to zoom in on your images, perfect for product images and galleries!
 
