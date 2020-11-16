@@ -25,7 +25,7 @@ Additionally it will have the class `fullview` while the user has not initiated 
 ## How to install
 
 To install this on your project run the following command on your terminal:<br/>
-`npm install react-imagezooom`
+`npm install react-image-zooom`
 
 ## How to Use
 
@@ -33,7 +33,7 @@ Here is a basic example of how to import and use this component:
 
 ```(javascript)
 import React from "react"
-import ImageZoom from "react-imagezooom";
+import ImageZoom from "react-image-zooom";
 
 function myZoomableImg() {
   return (
@@ -63,7 +63,7 @@ As you can see above, it is very similar to the standard `<img />` tag, now let'
 
 ```(javascript)
 import React from "react"
-import ImageZoom from "react-imagezooom";
+import ImageZoom from "react-image-zooom";
 
 function myZoomableImg() {
   return (
