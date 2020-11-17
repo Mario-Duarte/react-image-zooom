@@ -13,18 +13,18 @@ function App() {
       </Helmet>
 
       <header>
-        <h1><img src={process.env.PUBLIC_URL + '/logo48.png'} alt="ImageZoom logo" /><br/>&lt;ImageZoom&#x0002F;&gt;</h1>
+        <h1><img src={process.env.PUBLIC_URL + '/logo48.png'} alt="ImageZoom logo" /><br />&lt;ImageZoom&#x0002F;&gt;</h1>
 
         <p className="npm-install"><a href="https://www.npmjs.com/package/react-image-zooom" target="_blank" rel="noreferrer">npm i react-image-zooom</a></p>
 
         <p>Simple React component that will allow users to zoom in on your images, perfect for product images and galleries!</p>
-        <p>Small and light weight!<br/>Give it a try and check the <a href="https://github.com/Mario-Duarte/react-image-zooom" target="_blank" rel="noreferrer">docs here</a>.</p>
+        <p>Small and light weight!<br />Give it a try and check the <a href="https://github.com/Mario-Duarte/react-image-zooom" target="_blank" rel="noreferrer">docs here</a>.</p>
 
       </header>
 
       <ImageZoom className="fullImageZoom" src="https://picsum.photos/seed/000/1920/1080" alt="A image to apply the ImageZoom plugin" zoom="250" width="100%" height="auto" />
 
-      
+
       <div className="container">
         <h3>How it works</h3>
 
@@ -65,7 +65,7 @@ function App() {
         <p>Here is an example of a custom gallery:</p>
 
         <div className="demo-gallery">
-        <ImageZoom className="gallery-img" src="https://picsum.photos/seed/006/1920/1080" alt="A image to apply the ImageZoom plugin" zoom="300" />
+          <ImageZoom className="gallery-img" src="https://picsum.photos/seed/006/1920/1080" alt="A image to apply the ImageZoom plugin" zoom="300" />
           <ImageZoom className="gallery-img" src="https://picsum.photos/seed/007/1920/1080" alt="A image to apply the ImageZoom plugin" zoom="300" />
           <ImageZoom className="gallery-img" src="https://picsum.photos/seed/008/1920/1080" alt="A image to apply the ImageZoom plugin" zoom="300" />
           <ImageZoom className="gallery-img" src="https://picsum.photos/seed/009/1920/1080" alt="A image to apply the ImageZoom plugin" zoom="300" />
@@ -77,7 +77,7 @@ function App() {
         </iframe>
 
         <p>Hope you find this useful and create something awesome with it!</p>
-        <p>Want to contribute or found a bug? Le me know on <a href="https://github.com/Mario-Duarte/react-image-zooom" rel="noreferrer">GitHub</a><br/>
+        <p>Want to contribute or found a bug? Le me know on <a href="https://github.com/Mario-Duarte/react-image-zooom" rel="noreferrer">GitHub</a><br />
         Want to donate a Coffee and keep me going? <a href="https://www.paypal.com/paypalme/MarioDuarte/2" rel="noreferrer">Donate via PayPal</a></p>
 
       </div>
