@@ -2,6 +2,10 @@
 
 Simple React component that will allow users to zoom in on your images, perfect for product images and galleries!
 
+Small and light weight!
+
+[![npm version](https://badge.fury.io/js/react-image-zooom.svg)](https://badge.fury.io/js/react-image-zooom) ![https://img.shields.io/librariesio/release/npm/react-image-zooom](https://img.shields.io/librariesio/release/npm/react-image-zooom) ![https://img.shields.io/github/issues-raw/mario-duarte/react-image-zooom](https://img.shields.io/github/issues-raw/mario-duarte/react-image-zooom) ![https://img.shields.io/snyk/vulnerabilities/github/mario-duarte/react-image-zooom](https://img.shields.io/snyk/vulnerabilities/github/mario-duarte/react-image-zooom)
+
 View it in action [on this demo page!](https://mario-duarte.github.io/react-image-zooom/)
 
 ## Why?
