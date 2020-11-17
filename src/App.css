@@ -97,6 +97,28 @@
   color: #fff;
 }
 
+.npm-install {
+  display: inline;
+  background-color: #333;
+  width: auto;
+  padding: 5px 10px;
+  border-radius: 3px;
+  transition: all 0.4s ease-in-out;
+}
+
+.npm-install:hover {
+  background-color: #212121;
+}
+
+.npm-install a, .npm-install a:visited {
+  color: #eee;
+}
+
+iframe {
+  width: 100%;
+  margin: 10px auto;
+}
+
 @media all and (min-width: 768px) {
   .App .container .gallery .gallery-img {
     width: calc(50% - 10px);

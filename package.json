@@ -1,7 +1,7 @@
 {
   "homepage": "https://mario-duarte.github.io/react-image-zooom/",
   "name": "react-image-zoom",
-  "version": "0.1.0",
+  "version": "1.0.2",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.5",
