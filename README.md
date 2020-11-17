@@ -4,9 +4,12 @@ Simple React component that will allow users to zoom in on your images, perfect 
 
 Small and light weight!
 
-[![npm version](https://badge.fury.io/js/react-image-zooom.svg)](https://badge.fury.io/js/react-image-zooom) ![https://img.shields.io/librariesio/release/npm/react-image-zooom](https://img.shields.io/librariesio/release/npm/react-image-zooom) ![https://img.shields.io/github/issues-raw/mario-duarte/react-image-zooom](https://img.shields.io/github/issues-raw/mario-duarte/react-image-zooom) ![https://img.shields.io/snyk/vulnerabilities/github/mario-duarte/react-image-zooom](https://img.shields.io/snyk/vulnerabilities/github/mario-duarte/react-image-zooom)
+![npm version](https://badge.fury.io/js/react-image-zooom.svg) ![https://img.shields.io/librariesio/release/npm/react-image-zooom](https://img.shields.io/librariesio/release/npm/react-image-zooom) ![https://img.shields.io/github/issues-raw/mario-duarte/react-image-zooom](https://img.shields.io/github/issues-raw/mario-duarte/react-image-zooom) ![https://img.shields.io/snyk/vulnerabilities/github/mario-duarte/react-image-zooom](https://img.shields.io/snyk/vulnerabilities/github/mario-duarte/react-image-zooom)
 
-View it in action [on this demo page!](https://mario-duarte.github.io/react-image-zooom/)
+View it in action [on this demo page!](https://mario-duarte.github.io/react-image-zooom/)<br/>
+Alternatively on this [Pen @CodePen](https://codepen.io/MarioDesigns/pen/wvWZGpP)
+
+[Buy me a coffee to keep me going!](https://www.paypal.com/paypalme/MarioDuarte/2)
 
 ## Why?
 
@@ -33,7 +36,7 @@ To install this on your project run the following command on your terminal:<br/>
 
 ## How to Use
 
-Here is a basic example of how to import and use this component:
+Here is a basic example of how to import and use this component ([View on CodePen](https://codepen.io/MarioDesigns/pen/7ab69fcd17d811f63a58ab87234ad0a8)):
 
 ```(javascript)
 import React from "react"
@@ -63,7 +66,7 @@ This component accepts the following attributes:
 | width     |            "100%"            |    false |
 | height    |            "auto"            |    false |
 
-As you can see above, it is very similar to the standard `<img />` tag, now let's look at a more advanced example of a gallery using the component.
+As you can see above, it is very similar to the standard `<img />` tag, now let's look at a more advanced example of a gallery using the component ([View on CodePen](https://codepen.io/MarioDesigns/pen/9a673471b4b45d2b0cf51f1c3f7e8429)).
 
 ```(javascript)
 import React from "react"
