@@ -53,7 +53,7 @@ function App() {
 
         <ImageZoom src="https://picsum.photos/1920/1080" alt="A image to apply the ImageZoom plugin" />
 
-        <iframe height="450" scrolling="no" title="React-image-Zoom Single image example" src="https://codepen.io/MarioDesigns/embed/7ab69fcd17d811f63a58ab87234ad0a8?height=453&theme-id=24953&default-tab=js" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="false">
+        <iframe height="450" scrolling="no" title="React-image-Zoom Single image example" src="https://codepen.io/MarioDesigns/embed/7ab69fcd17d811f63a58ab87234ad0a8?height=453&theme-id=24953&default-tab=js" frameBorder="no" loading="lazy" allowtransparency="true">
           See the Pen <a href='https://codepen.io/MarioDesigns/pen/7ab69fcd17d811f63a58ab87234ad0a8'>React-image-Zoom Single image example</a> by Mario Duarte
           (<a href='https://codepen.io/MarioDesigns'>@MarioDesigns</a>) on <a href='https://codepen.io'>CodePen</a>.
         </iframe>
@@ -71,7 +71,7 @@ function App() {
           <ImageZoom className="gallery-img" src="https://picsum.photos/seed/009/1920/1080" alt="A image to apply the ImageZoom plugin" zoom="300" />
         </div>
 
-        <iframe height="600" scrolling="no" title="React-image-Zooom Gallery example" src="https://codepen.io/MarioDesigns/embed/9a673471b4b45d2b0cf51f1c3f7e8429?height=588&theme-id=24953&default-tab=js" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="false">
+        <iframe height="600" scrolling="no" title="React-image-Zooom Gallery example" src="https://codepen.io/MarioDesigns/embed/9a673471b4b45d2b0cf51f1c3f7e8429?height=588&theme-id=24953&default-tab=js" frameBorder="no" loading="lazy" allowtransparency="true">
           See the Pen <a href='https://codepen.io/MarioDesigns/pen/9a673471b4b45d2b0cf51f1c3f7e8429'>React-image-Zooom Gallery example</a> by Mario Duarte
           (<a href='https://codepen.io/MarioDesigns'>@MarioDesigns</a>) on <a href='https://codepen.io'>CodePen</a>.
         </iframe>
