@@ -1,10 +1,15 @@
 # ![Logo-ImageZooom](https://github.com/Mario-Duarte/react-ImageZooom/blob/demo/public/logo28.png?raw=true) Image-Zooom a React Component
 
+[![react-image-zooom](https://nodei.co/npm/react-image-zooom.png)](https://www.npmjs.com/package/react-image-zooom)
+
 Simple React component that will allow users to zoom in on your images, perfect for product images and galleries!
 
 Small and light weight!
 
-![npm version](https://badge.fury.io/js/react-image-zooom.svg) ![https://img.shields.io/librariesio/release/npm/react-image-zooom](https://img.shields.io/librariesio/release/npm/react-image-zooom) ![https://img.shields.io/github/issues-raw/mario-duarte/react-image-zooom](https://img.shields.io/github/issues-raw/mario-duarte/react-image-zooom) ![https://img.shields.io/snyk/vulnerabilities/github/mario-duarte/react-image-zooom](https://img.shields.io/snyk/vulnerabilities/github/mario-duarte/react-image-zooom)
+[![npm version](https://badge.fury.io/js/react-image-zooom.svg)](https://www.npmjs.com/package/react-image-zooom) 
+[![https://img.shields.io/librariesio/release/npm/react-image-zooom](https://img.shields.io/librariesio/release/npm/react-image-zooom)](https://www.npmjs.com/package/react-image-zooom) 
+[![https://img.shields.io/github/issues-raw/mario-duarte/react-image-zooom](https://img.shields.io/github/issues-raw/mario-duarte/react-image-zooom)](https://www.npmjs.com/package/react-image-zooom) 
+[![https://img.shields.io/snyk/vulnerabilities/github/mario-duarte/react-image-zooom](https://img.shields.io/snyk/vulnerabilities/github/mario-duarte/react-image-zooom)](https://www.npmjs.com/package/react-image-zooom)
 
 View it in action [on this demo page!](https://mario-duarte.github.io/react-image-zooom/)<br/>
 Alternatively on this [Pen @CodePen](https://codepen.io/MarioDesigns/pen/wvWZGpP)
