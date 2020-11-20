@@ -34,6 +34,9 @@ Additionally it will have the class `fullview` while the user has not initiated 
 To install this on your project run the following command on your terminal:<br/>
 `npm install react-image-zooom`
 
+Alternatively you can also install using yarn:<br/>
+`yarn add react-image-zooom`
+
 ## How to Use
 
 Here is a basic example of how to import and use this component ([View on CodePen](https://codepen.io/MarioDesigns/pen/7ab69fcd17d811f63a58ab87234ad0a8)):
