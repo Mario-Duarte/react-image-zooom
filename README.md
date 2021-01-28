@@ -14,6 +14,7 @@ Small and light weight!
 View it in action [on this demo page!](https://mario-duarte.github.io/react-image-zooom/)<br/>
 Alternatively on this [Pen @CodePen](https://codepen.io/MarioDesigns/pen/wvWZGpP)
 
+<a href="https://www.buymeacoffee.com/marioduarte"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a Coffee&emoji=&slug=marioduarte&button_colour=FF5F5F&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"></a><br/>
 [Buy me a coffee to keep me going!](https://www.paypal.com/paypalme/MarioDuarte/2)
 
 ## Why?
