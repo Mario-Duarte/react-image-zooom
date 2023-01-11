@@ -143,7 +143,7 @@ function ImageZoom(props) {
       id={props.id}
       className={[figureClass, figureZoomed, props.className].join(" ")}
       style={{
-        backgroundImage: "url(" + imgData + ")",
+        backgroundImage: `url( ${zoomed === '0' ? imgData : ''} )`,
         backgroundSize: props.zoom + "%",
         backgroundPosition: position,
       }}
