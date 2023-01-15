@@ -1,7 +1,7 @@
 {
     "homepage": "https://mario-duarte.github.io/react-image-zooom/",
     "name": "react-image-zooom",
-    "version": "1.0.7",
+    "version": "1.1.0",
     "main": "./lib/react-image-zooom.js",
     "license": "GPL",
     "repository": {
@@ -21,8 +21,8 @@
         "build": "webpack"
     },
     "peerDependencies": {
-        "react": "^17.0.1",
-        "react-dom": "^17.0.1",
+        "react": "^17 || ^18",
+        "react-dom": "^17 || ^18",
         "styled-components": "^5.3.6"
     },
     "devDependencies": {
