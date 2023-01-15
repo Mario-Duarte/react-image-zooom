@@ -1,7 +1,7 @@
 {
     "homepage": "https://mario-duarte.github.io/react-image-zooom/",
     "name": "react-image-zooom",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "main": "./lib/react-image-zooom.js",
     "license": "GPL",
     "repository": {
@@ -21,8 +21,8 @@
         "build": "webpack"
     },
     "peerDependencies": {
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
         "styled-components": "^5.3.6"
     },
     "devDependencies": {
@@ -34,8 +34,8 @@
         "eslint-plugin-react-hooks": "^4.2.0",
         "path": "^0.12.7",
         "prop-types": "^15.7.2",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
         "styled-components": "^5.3.6",
         "webpack": "^5.4.0",
         "webpack-cli": "^4.2.0"
