@@ -57,21 +57,41 @@ const Figure = styled.figure`
   }
 `;
 
+const ErrorText = styled.p`
+    width: 100%;
+    text-align: center;
+    border: 1px solid #f8f8f8;
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: #555;
+`;
+
 const Img = styled.img`
   transition: opacity 0.8s;
   display: block;
-`;
+  `;
 
-function ImageZoom(props) {
+function ImageZoom({
+  zoom = "200",
+  alt = "This is an imageZoom image",
+  width = "100%",
+  height = "auto",
+  src,
+  id,
+  className,
+  onError,
+  errorContent = <ErrorText>There was a problem loading your image</ErrorText>
+}) {
   // define and set default values to the states of the component
   const [zoomed, setZoomed] = useState("1");
   const [position, setPosition] = useState("50% 50%");
   const [imgData, setImgData] = useState(null);
+  const [error, setError] = useState(false);
   // convert state data into strings to be used as helper classes
-  let figureClass = imgData ? "loaded" : "loading";
-  let figureZoomed = zoomed === "0" ? "zoomed" : "fullView";
+  const figureClass = imgData ? "loaded" : "loading";
+  const figureZoomed = zoomed === "0" ? "zoomed" : "fullView";
 
-  function zoomInPosition(e) {
+  const zoomInPosition = (e) => {
     // this will handle the calculations of the area where the image needs to zoom in depending on the user interaction
     const zoomer = e.currentTarget.getBoundingClientRect();
     let x = ((e.clientX - zoomer.x) / zoomer.width) * 100;
@@ -79,7 +99,7 @@ function ImageZoom(props) {
     setPosition(`${x}% ${y}%`);
   }
 
-  function toggleZoomImage(e) {
+  const toggleZoomImage = (e) => {
     if (zoomed === "0") {
       // zoom out
       setZoomed("1");
@@ -90,19 +110,19 @@ function ImageZoom(props) {
     }
   }
 
-  function handleClick(e) {
+  const handleClick = (e) => {
     // Handle the click events
     toggleZoomImage(e);
   }
 
-  function handleMove(e) {
+  const handleMove = (e) => {
     // Handle the mouse move events
     if (zoomed === "0") {
       zoomInPosition(e);
     }
   }
 
-  function handleLeave() {
+  const handleLeave = () => {
     // Resets the state of the component on mouse leave
     setZoomed("1");
     setPosition("50% 50%");
@@ -110,7 +130,7 @@ function ImageZoom(props) {
 
   useEffect(() => {
     // This checks if the prop src was passed when the component was called and throw an error if this is null or set to empty
-    if (props.src === "" || props.src == null) {
+    if (src === "" || src === null) {
       throw new Error(
         "Prop src must be defined when using ImageZoom component!"
       );
@@ -119,7 +139,6 @@ function ImageZoom(props) {
     // Set initial state on component mount
     setZoomed("0");
     let img = new Image();
-    img.src = props.src;
     img.addEventListener("load", () => {
       // gracefully disable the loading animation
       setTimeout(() => {
@@ -127,38 +146,45 @@ function ImageZoom(props) {
         setImgData(img.src);
       }, 200);
     });
-  }, []);
+    img.addEventListener("error", (error) => {
+      setError(true);
+      onError(error); // call onError if image fails to load
+    });
+    img.src = src;
+  }, [onError, src]);
 
-  return (
-    <Figure
-      id={props.id}
-      className={[figureClass, figureZoomed, props.className].join(" ")}
-      style={{
-        backgroundImage: `url( ${zoomed === '0' ? imgData : ''} )`,
-        backgroundSize: props.zoom + "%",
-        backgroundPosition: position,
-      }}
-      onClick={(e) => handleClick(e)}
-      onMouseMove={(e) => handleMove(e)}
-      onMouseLeave={() => handleLeave()}
-    >
-      <Img
-        id="imageZoom"
-        src={imgData}
-        alt={props.alt}
-        style={{ opacity: zoomed }}
-        width={props.width}
-        height={props.height}
-      />
-    </Figure>
-  );
+  if (error) {
+    return (
+      <>
+        {errorContent}
+      </>
+    )
+  } else {
+    return (
+      <Figure
+        id={id}
+        className={[figureClass, figureZoomed, className].join(" ")}
+        style={{
+          backgroundImage: `url( ${zoomed === '0' ? imgData : ''} )`,
+          backgroundSize: zoom + "%",
+          backgroundPosition: position,
+        }}
+        onClick={(e) => handleClick(e)}
+        onMouseMove={(e) => handleMove(e)}
+        onMouseLeave={() => handleLeave()}
+      >
+        <Img
+          id="imageZoom"
+          src={imgData}
+          alt={alt}
+          style={{ opacity: zoomed }}
+          width={width}
+          height={height}
+        />
+      </Figure>
+    );
+  }
+
 }
-
-ImageZoom.defaultProps = {
-  zoom: "200",
-  alt: "This is an imageZoom image",
-  width: "100%",
-  height: "auto",
-};
 
 export default ImageZoom;
