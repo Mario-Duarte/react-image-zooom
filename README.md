@@ -35,6 +35,10 @@ It will have the class `loading` while the image is been preloaded and `loaded` 
 
 Additionally it will have the class `fullview` while the user has not initiated the zoom and `zoomed` once the user has taped/clicked in.
 
+### New to v1.2.0
+
+As requested by the users, you can now have custom components rendered when the image fails to load and pass in a custom callback to handle the error your own way.
+
 ## How to install
 
 To install this on your project run the following command on your terminal:<br/>
