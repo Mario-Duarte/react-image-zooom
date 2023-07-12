@@ -14,6 +14,7 @@ Small and light weight!
 View it in action [on this demo page!](https://mario-duarte.github.io/react-image-zooom/)<br/>
 Alternatively on this [Pen @CodePen](https://codepen.io/MarioDesigns/pen/wvWZGpP)
 
+<a href="https://www.buymeacoffee.com/marioduarte"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a Coffee&emoji=&slug=marioduarte&button_colour=FF5F5F&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"></a><br/>
 [Buy me a coffee to keep me going!](https://www.paypal.com/paypalme/MarioDuarte/2)
 
 ## Why?
@@ -33,6 +34,10 @@ For extra customization of the style of this component it will also add some ext
 It will have the class `loading` while the image is been preloaded and `loaded` once it has been loaded.
 
 Additionally it will have the class `fullview` while the user has not initiated the zoom and `zoomed` once the user has taped/clicked in.
+
+### New to v1.2.0
+
+As requested by the users, you can now have custom components rendered when the image fails to load and pass in a custom callback to handle the error your own way.
 
 ## How to install
 
