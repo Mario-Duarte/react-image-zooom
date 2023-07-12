@@ -57,12 +57,31 @@ const Figure = styled.figure`
   }
 `;
 
+const ErrorText = styled.p`
+    width: 100%;
+    text-align: center;
+    border: 1px solid #f8f8f8;
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: #555;
+`;
+
 const Img = styled.img`
   transition: opacity 0.8s;
   display: block;
-`;
+  `;
 
-function ImageZoom({ zoom = "200", alt = "This is an imageZoom image", width = "100%", height = "auto", src, id, className, onError, errorContent = <>There was a problem loading your image</> }) {
+function ImageZoom({
+  zoom = "200",
+  alt = "This is an imageZoom image",
+  width = "100%",
+  height = "auto",
+  src,
+  id,
+  className,
+  onError,
+  errorContent = <ErrorText>There was a problem loading your image</ErrorText>
+}) {
   // define and set default values to the states of the component
   const [zoomed, setZoomed] = useState("1");
   const [position, setPosition] = useState("50% 50%");
