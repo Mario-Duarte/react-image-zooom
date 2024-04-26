@@ -72,118 +72,133 @@ const Img = styled.img`
   `;
 
 function ImageZoom({
-  zoom = "200",
-  alt = "This is an imageZoom image",
-  width = "100%",
-  height = "auto",
-  src,
-  id,
-  className,
-  onError,
-  errorContent = <ErrorText>There was a problem loading your image</ErrorText>
+    zoom = "200",
+    alt = "This is an imageZoom image",
+    width = "100%",
+    height = "auto",
+    src,
+    id,
+    className,
+    onError,
+    errorContent = <ErrorText>There was a problem loading your image</ErrorText>
 }) {
-  // define and set default values to the states of the component
-  const [zoomed, setZoomed] = useState("1");
-  const [position, setPosition] = useState("50% 50%");
-  const [imgData, setImgData] = useState(null);
-  const [error, setError] = useState(false);
-  // convert state data into strings to be used as helper classes
-  const figureClass = imgData ? "loaded" : "loading";
-  const figureZoomed = zoomed === "0" ? "zoomed" : "fullView";
+    // define and set default values to the states of the component
+    const [zoomed, setZoomed] = useState("1");
+    const [position, setPosition] = useState("50% 50%");
+    const [imgData, setImgData] = useState(null);
+    const [error, setError] = useState(false);
+    // convert state data into strings to be used as helper classes
+    const figureClass = imgData ? "loaded" : "loading";
+    const figureZoomed = zoomed === "0" ? "zoomed" : "fullView";
 
-  const zoomInPosition = (e) => {
-    // this will handle the calculations of the area where the image needs to zoom in depending on the user interaction
-    const zoomer = e.currentTarget.getBoundingClientRect();
-    let x = ((e.clientX - zoomer.x) / zoomer.width) * 100;
-    let y = ((e.clientY - zoomer.y) / zoomer.height) * 100;
-    setPosition(`${x}% ${y}%`);
-  }
-
-  const toggleZoomImage = (e) => {
-    if (zoomed === "0") {
-      // zoom out
-      setZoomed("1");
-    } else {
-      //zoom in and set the background position correctly
-      setZoomed("0");
-      zoomInPosition(e);
-    }
-  }
-
-  const handleClick = (e) => {
-    // Handle the click events
-    toggleZoomImage(e);
-  }
-
-  const handleMove = (e) => {
-    // Handle the mouse move events
-    if (zoomed === "0") {
-      zoomInPosition(e);
-    }
-  }
-
-  const handleLeave = () => {
-    // Resets the state of the component on mouse leave
-    setZoomed("1");
-    setPosition("50% 50%");
-  }
-
-  useEffect(() => {
-    // This checks if the prop src was passed when the component was called and throw an error if this is null or set to empty
-    if (src === "" || src === null) {
-      throw new Error(
-        "Prop src must be defined when using ImageZoom component!"
-      );
+    const zoomInPosition = (e) => {
+        // this will handle the calculations of the area where the image needs to zoom in depending on the user interaction
+        const zoomer = e.currentTarget.getBoundingClientRect();
+        let x, y;
+        if (e.type === 'touchmove') {
+            document.body.style.overflow = "hidden";
+            const touch = e.touches[0];
+            x = ((touch.clientX - zoomer.x) / zoomer.width) * 100;
+            y = ((touch.clientY - zoomer.y) / zoomer.height) * 100;
+        } else {
+            x = ((e.clientX - zoomer.x) / zoomer.width) * 100;
+            y = ((e.clientY - zoomer.y) / zoomer.height) * 100;
+        }
+        setPosition(`${Math.max(0, Math.min(x, 100))}% ${Math.max(0, Math.min(y, 100))}%`);
     }
 
-    // Set initial state on component mount
-    setZoomed("0");
-    let img = new Image();
-    img.addEventListener("load", () => {
-      // gracefully disable the loading animation
-      setTimeout(() => {
+    const toggleZoomImage = (e) => {
+        if (zoomed === "0") {
+            // zoom out
+            setZoomed("1");
+        } else {
+            //zoom in and set the background position correctly
+            setZoomed("0");
+            zoomInPosition(e);
+        }
+    }
+
+    const handleClick = (e) => {
+        // Handle the click events
+        toggleZoomImage(e);
+    }
+
+    const handleMove = (e) => {
+        // Handle the mouse move events
+        if (zoomed === "0") {
+            zoomInPosition(e);
+        }
+    }
+
+    const handleLeave = (e) => {
+        // Resets the state of the component on mouse leave
         setZoomed("1");
-        setImgData(img.src);
-      }, 200);
-    });
-    img.addEventListener("error", (error) => {
-      setError(true);
-      onError(error); // call onError if image fails to load
-    });
-    img.src = src;
-  }, [onError, src]);
+        setPosition("50% 50%");
 
-  if (error) {
-    return (
-      <>
-        {errorContent}
-      </>
-    )
-  } else {
-    return (
-      <Figure
-        id={id}
-        className={[figureClass, figureZoomed, className].join(" ")}
-        style={{
-          backgroundImage: `url( ${zoomed === '0' ? imgData : ''} )`,
-          backgroundSize: zoom + "%",
-          backgroundPosition: position,
-        }}
-        onClick={(e) => handleClick(e)}
-        onMouseMove={(e) => handleMove(e)}
-        onMouseLeave={() => handleLeave()}
-      >
-        <Img
-          id="imageZoom"
-          src={imgData}
-          alt={alt}
-          style={{ opacity: zoomed }}
-          width={width}
-          height={height}
-        />
-      </Figure>
-    );
-  }
+        if (document.body.style.overflow === "hidden") {
+            document.body.style.overflow = "initial";
+        }
+    }
+
+    useEffect(() => {
+        // This checks if the prop src was passed when the component was called and throw an error if this is null or set to empty
+        if (src === "" || src === null) {
+            throw new Error(
+                "Prop src must be defined when using ImageZoom component!"
+            );
+        }
+
+        // Set initial state on component mount
+        setZoomed("0");
+        let img = new Image();
+        img.addEventListener("load", () => {
+            // gracefully disable the loading animation
+            setTimeout(() => {
+                setZoomed("1");
+                setImgData(img.src);
+            }, 200);
+        });
+        img.addEventListener("error", (error) => {
+            setError(true);
+            onError(error); // call onError if image fails to load
+        });
+        img.src = src;
+    }, [onError, src]);
+
+    if (error) {
+        return (
+            <>
+                {errorContent}
+            </>
+        )
+    } else {
+        return (
+            <Figure
+                id={id}
+                className={[figureClass, figureZoomed, className].join(" ")}
+                style={{
+                    backgroundImage: `url( ${zoomed === '0' ? imgData : ''} )`,
+                    backgroundSize: zoom + "%",
+                    backgroundPosition: position,
+                }}
+                onClick={handleClick}
+                onMouseMove={handleMove}
+                onMouseLeave={handleLeave}
+                onTouchStart={handleClick}
+                onTouchMove={handleMove}
+                onTouchEnd={handleLeave}
+            >
+                <Img
+                    id="imageZoom"
+                    src={imgData}
+                    alt={alt}
+                    style={{ opacity: zoomed }}
+                    width={width}
+                    height={height}
+                />
+            </Figure>
+        );
+    }
 
 }
 
