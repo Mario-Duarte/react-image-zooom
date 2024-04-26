@@ -39,6 +39,10 @@ Additionally it will have the class `fullview` while the user has not initiated 
 
 As requested by the users, you can now have custom components rendered when the image fails to load and pass in a custom callback to handle the error your own way.
 
+### New to v1.3.0
+
+As requested by the users, this is now supported by mobile devices.
+
 ## How to install
 
 To install this on your project run the following command on your terminal:<br/>
