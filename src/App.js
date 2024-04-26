@@ -51,10 +51,10 @@ function App() {
 
         <p>The imageZoom component works very similar to the default img tag in HTML, just pass in a src attribute (<strong><i>mandatory</i></strong>) with the image url you wan to use and it will render a working imageZoom component.</p>
 
-        <ImageZoom src="https://picsum.photos/1920/1080" alt="A image to apply the ImageZoom plugin" />
+        <ImageZoom src="https://picsum.photos/seed/010/1920/1080" alt="A image to apply the ImageZoom plugin" />
 
-        <iframe height="450" scrolling="no" title="React-image-Zoom Single image example" src="https://codepen.io/MarioDesigns/embed/7ab69fcd17d811f63a58ab87234ad0a8?height=453&theme-id=24953&default-tab=js" frameBorder="no" loading="lazy" allowtransparency="true">
-          See the Pen <a href='https://codepen.io/MarioDesigns/pen/7ab69fcd17d811f63a58ab87234ad0a8'>React-image-Zoom Single image example</a> by Mario Duarte
+        <iframe height="450" scrolling="no" title="React-image-Zoom Single image example" src="https://codepen.io/MarioDesigns/embed/ZEZPqZG/0cfba49577c0ec706ad8ae7dad26fefd?height=453&theme-id=24953&default-tab=js" frameBorder="no" loading="lazy" allowtransparency="true">
+          See the Pen <a href='https://codepen.io/MarioDesigns/pen/ZEZPqZG/0cfba49577c0ec706ad8ae7dad26fefd'>React-image-Zoom Single image example</a> by Mario Duarte
           (<a href='https://codepen.io/MarioDesigns'>@MarioDesigns</a>) on <a href='https://codepen.io'>CodePen</a>.
         </iframe>
 
