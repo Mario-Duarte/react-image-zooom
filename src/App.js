@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 import Helmet from "react-helmet";
 import ImageZoom from "react-image-zooom";
@@ -5,6 +6,12 @@ import ImageZoom from "react-image-zooom";
 function App() {
   let year = new Date();
   year = year.getFullYear();
+  const [galleryImage, setGalleryImage] = useState('https://picsum.photos/seed/013/1920/1080');
+
+  const handleClick = (url) => {
+    setGalleryImage(url);
+  }
+
   return (
     <div className="App">
       <Helmet>
@@ -62,7 +69,7 @@ function App() {
 
         <p>You can also pass in secondary attributes such as <strong>id</strong> and <strong>className</strong> to enable you to style the component more easily, in addition to these, the component will also update it's className based on it's state, for example, <strong>loading</strong> and <strong>loaded</strong> for when the component is downloading the image passed, and <strong>fullView</strong> and <strong>zoomed</strong> for when the user zooms in on the image. These can be easily targeted in conjunction with the attribute className to adapt the style of the component depending of implementation.</p>
 
-        <p>Here is an example of a custom gallery:</p>
+        <h3>Here is an example of a custom gallery:</h3>
 
         <div className="demo-gallery">
           <ImageZoom className="gallery-img" src="https://picsum.photos/seed/006/1920/1080" alt="A image to apply the ImageZoom plugin" zoom="300" />
@@ -76,9 +83,24 @@ function App() {
           (<a href='https://codepen.io/MarioDesigns'>@MarioDesigns</a>) on <a href='https://codepen.io'>CodePen</a>.
         </iframe>
 
+        <h3>Here is a more advanced example with image picker:</h3>
+
+        <div className="gallery-picker">
+          <img className="img1" src="https://picsum.photos/seed/010/1920/1080" alt="A placeholder" onClick={() => handleClick('https://picsum.photos/seed/010/1920/1080')} />
+          <img className="img2" src="https://picsum.photos/seed/011/1920/1080" alt="A placeholder" onClick={() => handleClick('https://picsum.photos/seed/011/1920/1080')} />
+          <img className="img3" src="https://picsum.photos/seed/012/1920/1080" alt="A placeholder" onClick={() => handleClick('https://picsum.photos/seed/012/1920/1080')} />
+
+          <ImageZoom className="FullImageZoom" src={galleryImage} alt="A image to apply the ImageZoom plugin" zoom="250" />
+        </div>
+
+        <iframe height="600" scrolling="no" title="React-image-Zooom Gallery example" src="https://codepen.io/MarioDesigns/embed/30174463be80e9e34f634463dd9701c9?height=588&theme-id=24953&default-tab=js" frameBorder="no" loading="lazy" allowtransparency="true">
+          See the Pen <a href='https://codepen.io/MarioDesigns/pen/30174463be80e9e34f634463dd9701c9'>React Image Zoom - advanced usage with image selector</a> by Mario Duarte
+          (<a href='https://codepen.io/MarioDesigns'>@MarioDesigns</a>) on <a href='https://codepen.io'>CodePen</a>.
+        </iframe>
+
         <p>Hope you find this useful and create something awesome with it!</p>
         <p>Want to contribute or found a bug? Le me know on <a href="https://github.com/Mario-Duarte/react-image-zooom" rel="noreferrer">GitHub</a><br />
-        Want to donate a Coffee and keep me going? <a href="https://www.paypal.com/paypalme/MarioDuarte/2" rel="noreferrer">Donate via PayPal</a></p>
+          Want to donate a Coffee and keep me going? <a href="https://www.paypal.com/paypalme/MarioDuarte/2" rel="noreferrer">Donate via PayPal</a></p>
 
       </div>
 

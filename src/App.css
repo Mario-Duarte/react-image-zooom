@@ -45,6 +45,33 @@
   padding: 60px 40px;
 }
 
+.App .container .gallery-picker {
+  position: relative;
+  width: 100%;
+  background-color: #ddd;
+  display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	grid-column-gap: 10px;
+	grid-row-gap: 5px;
+  margin: 60px auto;
+  padding: 20px;
+
+  img {
+    cursor: pointer;
+    width: 100%;
+    border: 5px solid #fff;
+  }
+}
+
+.App .container .gallery-picker .img1 { grid-area: 1 / 1 / 2 / 2; }
+.App .container .gallery-picker .img2 { grid-area: 2 / 1 / 3 / 2; }
+.App .container .gallery-picker .img3 { grid-area: 3 / 1 / 4 / 2; }
+
+.App .container .gallery-picker .FullImageZoom {
+  grid-area: 1 / 2 / 4 / 5;
+}
+
 .App .container .gallery {
   position: relative;
   width: 100%;
