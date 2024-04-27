@@ -5,17 +5,17 @@
     "main.js.map": "/react-image-zooom/static/js/main.e4f342f3.chunk.js.map",
     "runtime-main.js": "/react-image-zooom/static/js/runtime-main.5ea5844e.js",
     "runtime-main.js.map": "/react-image-zooom/static/js/runtime-main.5ea5844e.js.map",
-    "static/js/2.d018e481.chunk.js": "/react-image-zooom/static/js/2.d018e481.chunk.js",
-    "static/js/2.d018e481.chunk.js.map": "/react-image-zooom/static/js/2.d018e481.chunk.js.map",
+    "static/js/2.b166eedc.chunk.js": "/react-image-zooom/static/js/2.b166eedc.chunk.js",
+    "static/js/2.b166eedc.chunk.js.map": "/react-image-zooom/static/js/2.b166eedc.chunk.js.map",
     "static/js/3.dfde9502.chunk.js": "/react-image-zooom/static/js/3.dfde9502.chunk.js",
     "static/js/3.dfde9502.chunk.js.map": "/react-image-zooom/static/js/3.dfde9502.chunk.js.map",
     "index.html": "/react-image-zooom/index.html",
     "static/css/main.723a9dae.chunk.css.map": "/react-image-zooom/static/css/main.723a9dae.chunk.css.map",
-    "static/js/2.d018e481.chunk.js.LICENSE.txt": "/react-image-zooom/static/js/2.d018e481.chunk.js.LICENSE.txt"
+    "static/js/2.b166eedc.chunk.js.LICENSE.txt": "/react-image-zooom/static/js/2.b166eedc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.5ea5844e.js",
-    "static/js/2.d018e481.chunk.js",
+    "static/js/2.b166eedc.chunk.js",
     "static/css/main.723a9dae.chunk.css",
     "static/js/main.e4f342f3.chunk.js"
   ]
