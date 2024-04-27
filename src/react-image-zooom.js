@@ -16,12 +16,10 @@ const Figure = styled.figure`
   margin: 0;
   overflow: hidden;
   cursor: zoom-in;
-
   img {
     opacity: 0;
     transition: opacity 0s ease-in-out;
   }
-
   &:before {
     content: "";
     background-color: transparent;
@@ -100,13 +98,25 @@ function ImageZoom({
   // convert state data into strings to be used as helper classes
   const figureClass = imgData ? "loaded" : "loading";
   const figureZoomed = zoomed === "0" ? "zoomed" : "fullView";
+  const [isOverflowHidden, setIsOverflowHidden] = useState(false);
 
   const zoomInPosition = (e) => {
     // this will handle the calculations of the area where the image needs to zoom in depending on the user interaction
     const zoomer = e.currentTarget.getBoundingClientRect();
-    let x = ((e.clientX - zoomer.x) / zoomer.width) * 100;
-    let y = ((e.clientY - zoomer.y) / zoomer.height) * 100;
-    setPosition(`${x}% ${y}%`);
+    let x, y;
+    if (e.type === 'touchmove') {
+      if (!isOverflowHidden) {
+        setIsOverflowHidden(true);
+        document.body.style.overflow = "hidden";
+      }
+      const touch = e.touches[0];
+      x = ((touch.clientX - zoomer.x) / zoomer.width) * 100;
+      y = ((touch.clientY - zoomer.y) / zoomer.height) * 100;
+    } else {
+      x = ((e.clientX - zoomer.x) / zoomer.width) * 100;
+      y = ((e.clientY - zoomer.y) / zoomer.height) * 100;
+    }
+    setPosition(`${Math.max(0, Math.min(x, 100))}% ${Math.max(0, Math.min(y, 100))}%`);
   }
 
   const toggleZoomImage = (e) => {
@@ -136,6 +146,11 @@ function ImageZoom({
     // Resets the state of the component on mouse leave
     setZoomed("1");
     setPosition("50% 50%");
+
+    if (isOverflowHidden) {
+      setIsOverflowHidden(false);
+      document.body.style.overflow = "initial";
+    }
   }
 
   useEffect(() => {
@@ -180,9 +195,12 @@ function ImageZoom({
           backgroundSize: zoom + "%",
           backgroundPosition: position,
         }}
-        onClick={(e) => handleClick(e)}
-        onMouseMove={(e) => handleMove(e)}
-        onMouseLeave={() => handleLeave()}
+        onClick={handleClick}
+        onMouseMove={handleMove}
+        onMouseLeave={handleLeave}
+        onTouchStart={handleClick}
+        onTouchMove={handleMove}
+        onTouchEnd={handleLeave}
       >
         <Img
           id="imageZoom"
