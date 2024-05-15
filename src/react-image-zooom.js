@@ -191,7 +191,7 @@ function ImageZoom({
         id={id}
         className={[figureClass, figureZoomed, className].join(" ")}
         style={{
-          backgroundImage: `url( ${zoomed === '0' ? imgData : ''} )`,
+          backgroundImage: `url( ${zoomed === '0' && imgData ? imgData : ''} )`,
           backgroundSize: zoom + "%",
           backgroundPosition: position,
         }}
@@ -202,14 +202,14 @@ function ImageZoom({
         onTouchMove={handleMove}
         onTouchEnd={handleLeave}
       >
-        <Img
+        {imgData && <Img
           id="imageZoom"
           src={imgData}
           alt={alt}
           style={{ opacity: zoomed }}
           width={width}
           height={height}
-        />
+        />}
       </Figure>
     );
   }
