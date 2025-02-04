@@ -1,5 +1,17 @@
 var path = require('path');
 
+const ReactCompilerConfig = {
+    target: 19
+};
+
+module.exports = function () {
+    return {
+        plugins: [
+            ['babel-plugin-react-compiler', ReactCompilerConfig],
+        ],
+    };
+};
+
 module.exports = {
     mode: 'production',
     entry: './src/react-image-zooom.js',
