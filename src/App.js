@@ -29,7 +29,7 @@ function App() {
 
       </header>
 
-      <ImageZoom className="fullImageZoom" src="https://picsum.photos/seed/000/1920/1080" alt="A image to apply the ImageZoom plugin" zoom="250" width="100%" height="auto" />
+      <ImageZoom className="fullImageZoom" src="https://picsum.photos/seed/000/1920/1080" alt="A image to apply the ImageZoom plugin" zoom="80" width="100%" height="auto" />
 
 
       <div className="container">
@@ -66,6 +66,11 @@ function App() {
         </iframe>
 
         <p>By default the component will set a zoom of 200% on the image if no attribute was set, it will also set default values to the <strong>width</strong> (100%), <strong>height</strong> (auto) and <strong>alt</strong> (This is an imageZoom image) attributes.</p>
+
+        <p><strong><i>New to 1.4:</i></strong> You can now also set the attribute <strong>fullWidth</strong> as boolean (defaults to false) to set the zoom level to match the full dimensions of the image, if the image is smaller than the container it is in it will ignore this and use the <strong>zoom</strong> prop.</p>
+
+        <h3>Full width image example using a 4k image</h3>
+        <ImageZoom src="https://picsum.photos/seed/022/3840/2160" alt="A image to apply the ImageZoom plugin" fullWidth={true} />
 
         <p>You can also pass in secondary attributes such as <strong>id</strong> and <strong>className</strong> to enable you to style the component more easily, in addition to these, the component will also update it's className based on it's state, for example, <strong>loading</strong> and <strong>loaded</strong> for when the component is downloading the image passed, and <strong>fullView</strong> and <strong>zoomed</strong> for when the user zooms in on the image. These can be easily targeted in conjunction with the attribute className to adapt the style of the component depending of implementation.</p>
 

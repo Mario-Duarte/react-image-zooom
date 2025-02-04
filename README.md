@@ -35,6 +35,37 @@ It will have the class `loading` while the image is been preloaded and `loaded` 
 
 Additionally it will have the class `fullview` while the user has not initiated the zoom and `zoomed` once the user has taped/clicked in.
 
+### New to v1.4.0
+
+Performance updates and allowing to set the zoom level to the image with rather than percentage, this will calculate the correct percentage to display the image in its true size and default to the percentage if this value would be less than 100%.
+
+Example:
+
+```javascript
+import React from "react"
+import ImageZoom from "react-image-zooom";
+
+function myZoomableImg() {
+  return (
+    <div>
+      <ImageZoom 
+        src="https://picsum.photos/seed/022/3840/2160" 
+        alt="A image to apply the ImageZoom plugin" 
+        fullWidth={true} 
+      /> 
+      // fullWidth -> this will automatically calculate the correct zoom percentage
+      // to display the image at the original width if this is above 100% or default to the zoom level provided
+    </div>
+  );
+}
+
+export default myZoomableImg;
+```
+
+### New to v1.3.0
+
+As requested by the users, this is now supported by mobile devices.
+
 ### New to v1.2.0
 
 As requested by the users, you can now have custom components rendered when the image fails to load and pass in a custom callback to handle the error your own way.
@@ -51,7 +82,7 @@ Alternatively you can also install using yarn:<br/>
 
 Here is a basic example of how to import and use this component ([View on CodePen](https://codepen.io/MarioDesigns/pen/7ab69fcd17d811f63a58ab87234ad0a8)):
 
-```(javascript)
+```javascript
 import React from "react"
 import ImageZoom from "react-image-zooom";
 
@@ -75,6 +106,7 @@ This component accepts the following attributes:
 | id        |             Null             |    false |
 | src       |             Null             |     true |
 | zoom      |             200              |    false |
+| fullWifth  |            false              |   false |
 | alt       | "This is an imageZoom image" |    false |
 | width     |            "100%"            |    false |
 | height    |            "auto"            |    false |
