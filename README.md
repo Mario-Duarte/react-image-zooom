@@ -40,7 +40,8 @@ Additionally it will have the class `fullview` while the user has not initiated 
 Performance updates and allowing to set the zoom level to the image with rather than percentage, this will calculate the correct percentage to display the image in its true size and default to the percentage if this value would be less than 100%.
 
 Example:
-```(javascript)
+
+```javascript
 import React from "react"
 import ImageZoom from "react-image-zooom";
 
@@ -59,7 +60,6 @@ function myZoomableImg() {
 }
 
 export default myZoomableImg;
-
 ```
 
 ### New to v1.3.0
@@ -82,7 +82,7 @@ Alternatively you can also install using yarn:<br/>
 
 Here is a basic example of how to import and use this component ([View on CodePen](https://codepen.io/MarioDesigns/pen/7ab69fcd17d811f63a58ab87234ad0a8)):
 
-```(javascript)
+```javascript
 import React from "react"
 import ImageZoom from "react-image-zooom";
 
