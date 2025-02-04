@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
+import PropTypes from 'prop-types';
 import styled, { keyframes } from "styled-components";
 
 const rotate = keyframes`
@@ -81,6 +82,7 @@ const Img = styled.img`
 
 function ImageZoom({
   zoom = "200",
+  fullWidth = false,
   alt = "This is an imageZoom image",
   width = "100%",
   height = "auto",
@@ -90,23 +92,25 @@ function ImageZoom({
   onError,
   errorContent = <ErrorText>There was a problem loading your image</ErrorText>
 }) {
-  // define and set default values to the states of the component
-  const [zoomed, setZoomed] = useState("1");
-  const [position, setPosition] = useState("50% 50%");
-  const [imgData, setImgData] = useState(null);
-  const [error, setError] = useState(false);
-  // convert state data into strings to be used as helper classes
-  const figureClass = imgData ? "loaded" : "loading";
-  const figureZoomed = zoomed === "0" ? "zoomed" : "fullView";
-  const [isOverflowHidden, setIsOverflowHidden] = useState(false);
+  const [state, setState] = useState({
+    isZoomed: false,
+    position: "50% 50%",
+    imgData: null,
+    error: false,
+    isOverflowHidden: false,
+    naturalWidth: 0,
+    naturalHeight: 0
+  });
 
-  const zoomInPosition = (e) => {
-    // this will handle the calculations of the area where the image needs to zoom in depending on the user interaction
+  const { position, imgData, error, isOverflowHidden } = state;
+
+  const zoomInPosition = useCallback((e) => {
     const zoomer = e.currentTarget.getBoundingClientRect();
     let x, y;
+
     if (e.type === 'touchmove') {
       if (!isOverflowHidden) {
-        setIsOverflowHidden(true);
+        setState(prev => ({ ...prev, isOverflowHidden: true }));
         document.body.style.overflow = "hidden";
       }
       const touch = e.touches[0];
@@ -116,104 +120,138 @@ function ImageZoom({
       x = ((e.clientX - zoomer.x) / zoomer.width) * 100;
       y = ((e.clientY - zoomer.y) / zoomer.height) * 100;
     }
-    setPosition(`${Math.max(0, Math.min(x, 100))}% ${Math.max(0, Math.min(y, 100))}%`);
-  }
 
-  const toggleZoomImage = (e) => {
-    if (zoomed === "0") {
-      // zoom out
-      setZoomed("1");
-    } else {
-      //zoom in and set the background position correctly
-      setZoomed("0");
+    setState(prev => ({
+      ...prev,
+      position: `${Math.max(0, Math.min(x, 100))}% ${Math.max(0, Math.min(y, 100))}%`
+    }));
+  }, [isOverflowHidden]);
+
+  const handleClick = useCallback((e) => {
+    setState(prev => {
+      const newIsZoomed = !prev.isZoomed;
+      return {
+        ...prev,
+        isZoomed: newIsZoomed,
+        ...(newIsZoomed && { position: prev.position })
+      };
+    });
+    if (!state.isZoomed) zoomInPosition(e);
+  }, [zoomInPosition, state.isZoomed]);
+
+  const handleMove = useCallback((e) => {
+    if (state.isZoomed) {
       zoomInPosition(e);
     }
-  }
+  }, [state.isZoomed, zoomInPosition]);
 
-  const handleClick = (e) => {
-    // Handle the click events
-    toggleZoomImage(e);
-  }
-
-  const handleMove = (e) => {
-    // Handle the mouse move events
-    if (zoomed === "0") {
-      zoomInPosition(e);
-    }
-  }
-
-  const handleLeave = () => {
-    // Resets the state of the component on mouse leave
-    setZoomed("1");
-    setPosition("50% 50%");
-
-    if (isOverflowHidden) {
-      setIsOverflowHidden(false);
+  const handleLeave = useCallback(() => {
+    setState(prev => ({
+      ...prev,
+      isZoomed: false,
+      position: "50% 50%",
+      isOverflowHidden: false
+    }));
+    return () => {
       document.body.style.overflow = "initial";
-    }
-  }
+    };
+  }, []);
 
   useEffect(() => {
-    setImgData(null); // Reset imgData when src changes
-    // This checks if the prop src was passed when the component was called and throw an error if this is null or set to empty
-    if (src === "" || src === null) {
-      throw new Error(
-        "Prop src must be defined when using ImageZoom component!"
-      );
+    setState(prev => ({ ...prev, imgData: null }));
+
+    if (!src) {
+      throw new Error("Prop src must be defined when using ImageZoom component!");
     }
 
-    // Set initial state on component mount
-    setZoomed("0");
-    let img = new Image();
-    img.addEventListener("load", () => {
-      // gracefully disable the loading animation
+    const img = new Image();
+    const handleLoad = () => {
       setTimeout(() => {
-        setZoomed("1");
-        setImgData(img.src);
+        setState(prev => ({
+          ...prev,
+          isZoomed: false,
+          imgData: img.src,
+          naturalWidth: img.naturalWidth,
+          naturalHeight: img.naturalHeight
+        }));
       }, 200);
-    });
-    img.addEventListener("error", (error) => {
-      setError(true);
-      onError(error); // call onError if image fails to load
-    });
-    img.src = src;
-  }, [onError, src]);
+    };
 
-  if (error) {
-    return (
-      <>
-        {errorContent}
-      </>
-    )
-  } else {
-    return (
-      <Figure
-        id={id}
-        className={[figureClass, figureZoomed, className].join(" ")}
-        style={{
-          backgroundImage: `url( ${zoomed === '0' && imgData ? imgData : ''} )`,
-          backgroundSize: zoom + "%",
-          backgroundPosition: position,
-        }}
-        onClick={handleClick}
-        onMouseMove={handleMove}
-        onMouseLeave={handleLeave}
-        onTouchStart={handleClick}
-        onTouchMove={handleMove}
-        onTouchEnd={handleLeave}
-      >
-        {imgData && <Img
+    const handleError = (error) => {
+      setState(prev => ({ ...prev, error: true }));
+      onError?.(error);
+    };
+
+    img.addEventListener("load", handleLoad);
+    img.addEventListener("error", handleError);
+
+    img.src = src;
+
+    return () => {
+      img.removeEventListener("load", handleLoad);
+      img.removeEventListener("error", handleError);
+    };
+  }, [src, onError]);
+
+  const calculateZoom = useMemo(() => {
+    if (!fullWidth || !state.naturalWidth) return `${zoom}%`;
+    
+    const containerWidth = document.querySelector('.fullImageZoom')?.clientWidth || 0;
+    if (!containerWidth) return `${zoom}%`;
+    
+    const zoomPercentage = (state.naturalWidth / containerWidth) * 100;
+    return `${zoomPercentage < 100 ? zoom : zoomPercentage}%`;
+  }, [zoom, fullWidth, state.naturalWidth]);
+
+  const figureStyle = useMemo(() => ({
+    backgroundImage: `url(${state.isZoomed && imgData ? imgData : ''})`,
+    backgroundSize: calculateZoom,
+    backgroundPosition: position,
+  }), [state.isZoomed, imgData, calculateZoom, position]);
+
+  if (error) return errorContent;
+
+  return (
+    <Figure
+      id={id}
+      className={`${imgData ? 'loaded' : 'loading'} ${state.isZoomed ? 'zoomed' : 'fullView'} ${className}`}
+      style={figureStyle}
+      onClick={handleClick}
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+      onTouchStart={handleClick}
+      onTouchMove={handleMove}
+      onTouchEnd={handleLeave}
+      role="button"
+      aria-label={`Zoomable image: ${alt}`}
+      tabIndex={0}
+    >
+      {imgData && (
+        <Img
+          loading="lazy"
           id="imageZoom"
           src={imgData}
           alt={alt}
-          style={{ opacity: zoomed }}
+          style={{ opacity: state.isZoomed ? 0 : 1 }}
           width={width}
           height={height}
-        />}
-      </Figure>
-    );
-  }
-
+        />
+      )}
+    </Figure>
+  );
 }
 
-export default ImageZoom;
+ImageZoom.propTypes = {
+  zoom: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  fullWidth: PropTypes.bool,
+  alt: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  src: PropTypes.string.isRequired, // Prop src must be defined when using ImageZoom component
+  id: PropTypes.string,
+  className: PropTypes.string,
+  onError: PropTypes.func,
+  errorContent: PropTypes.node
+};
+
+export default React.memo(ImageZoom);
