@@ -29,7 +29,7 @@ function App() {
 
       </header>
 
-      <ImageZoom className="fullImageZoom" src="https://picsum.photos/seed/000/1920/1080" alt="A image to apply the ImageZoom plugin" zoom="80" width="100%" height="auto" />
+      <ImageZoom className="fullImageZoom" src="https://picsum.photos/seed/000/1920/1080" alt="A image to apply the ImageZoom plugin" zoom="250" width="100%" height="auto" />
 
 
       <div className="container">
