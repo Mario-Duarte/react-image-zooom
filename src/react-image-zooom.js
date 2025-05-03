@@ -152,9 +152,8 @@ function ImageZoom({
       position: "50% 50%",
       isOverflowHidden: false
     }));
-    return () => {
-      document.body.style.overflow = "initial";
-    };
+
+    document.body.style.overflow = "auto";  
   }, []);
 
   useEffect(() => {
