@@ -4,11 +4,10 @@ import Helmet from "react-helmet";
 import ImageZoom from "react-image-zooom";
 
 function App() {
-  let year = new Date();
-  year = year.getFullYear();
+  const year:number = new Date().getFullYear();
   const [galleryImage, setGalleryImage] = useState('https://picsum.photos/seed/013/1920/1080');
 
-  const handleClick = (url) => {
+  const handleClick = (url: string) => {
     setGalleryImage(url);
   }
 
@@ -60,7 +59,7 @@ function App() {
 
         <ImageZoom src="https://picsum.photos/seed/010/1920/1080" alt="A image to apply the ImageZoom plugin" />
 
-        <iframe height="450" scrolling="no" title="React-image-Zoom Single image example" src="https://codepen.io/MarioDesigns/embed/ZEZPqZG/0cfba49577c0ec706ad8ae7dad26fefd?height=453&theme-id=24953&default-tab=js" frameBorder="no" loading="lazy" allowtransparency="true">
+        <iframe height="450" title="React-image-Zoom Single image example" src="https://codepen.io/MarioDesigns/embed/ZEZPqZG/0cfba49577c0ec706ad8ae7dad26fefd?height=453&theme-id=24953&default-tab=js" loading="lazy" allowTransparency={true}>
           See the Pen <a href='https://codepen.io/MarioDesigns/pen/ZEZPqZG/0cfba49577c0ec706ad8ae7dad26fefd'>React-image-Zoom Single image example</a> by Mario Duarte
           (<a href='https://codepen.io/MarioDesigns'>@MarioDesigns</a>) on <a href='https://codepen.io'>CodePen</a>.
         </iframe>
@@ -83,7 +82,7 @@ function App() {
           <ImageZoom className="gallery-img" src="https://picsum.photos/seed/009/1920/1080" alt="A image to apply the ImageZoom plugin" zoom="300" />
         </div>
 
-        <iframe height="600" scrolling="no" title="React-image-Zooom Gallery example" src="https://codepen.io/MarioDesigns/embed/9a673471b4b45d2b0cf51f1c3f7e8429?height=588&theme-id=24953&default-tab=js" frameBorder="no" loading="lazy" allowtransparency="true">
+        <iframe height="600" title="React-image-Zooom Gallery example" src="https://codepen.io/MarioDesigns/embed/9a673471b4b45d2b0cf51f1c3f7e8429?height=588&theme-id=24953&default-tab=js" loading="lazy" allowTransparency={true}>
           See the Pen <a href='https://codepen.io/MarioDesigns/pen/9a673471b4b45d2b0cf51f1c3f7e8429'>React-image-Zooom Gallery example</a> by Mario Duarte
           (<a href='https://codepen.io/MarioDesigns'>@MarioDesigns</a>) on <a href='https://codepen.io'>CodePen</a>.
         </iframe>
@@ -98,7 +97,7 @@ function App() {
           <ImageZoom className="FullImageZoom" src={galleryImage} alt="A image to apply the ImageZoom plugin" zoom="250" />
         </div>
 
-        <iframe height="600" scrolling="no" title="React-image-Zooom Gallery example" src="https://codepen.io/MarioDesigns/embed/30174463be80e9e34f634463dd9701c9?height=588&theme-id=24953&default-tab=js" frameBorder="no" loading="lazy" allowtransparency="true">
+        <iframe height="600" title="React-image-Zooom Gallery example" src="https://codepen.io/MarioDesigns/embed/30174463be80e9e34f634463dd9701c9?height=588&theme-id=24953&default-tab=js" loading="lazy" allowTransparency={true}>
           See the Pen <a href='https://codepen.io/MarioDesigns/pen/30174463be80e9e34f634463dd9701c9'>React Image Zoom - advanced usage with image selector</a> by Mario Duarte
           (<a href='https://codepen.io/MarioDesigns'>@MarioDesigns</a>) on <a href='https://codepen.io'>CodePen</a>.
         </iframe>
