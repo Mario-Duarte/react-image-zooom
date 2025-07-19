@@ -1,4 +1,5 @@
 var path = require('path');
+const { use } = require('react');
 
 const ReactCompilerConfig = {
     target: 19
@@ -14,7 +15,7 @@ module.exports = function () {
 
 module.exports = {
     mode: 'production',
-    entry: './src/react-image-zooom.js',
+    entry: './src/react-image-zooom.tsx',
     output: {
         path: path.resolve('lib'),
         filename: 'react-image-zooom.js',
@@ -23,6 +24,18 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.tsx?$/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                    },
+                {
+                        loader: 'ts-loader'
+                    }
+                ],
+                exclude: /(node_modules)/
+            },
+            {
                 test: /\.js?$/,
                 exclude: /(node_modules)/,
                 loader: 'babel-loader'
@@ -30,6 +43,7 @@ module.exports = {
         ]
     },
     resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
         alias: {
             'react': path.resolve(__dirname, './node_modules/react'),
             'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
@@ -48,6 +62,7 @@ module.exports = {
             commonjs2: "react-dom",
             amd: "ReactDOM",
             root: "ReactDOM"
-        }
+        },
+        "styled-components": "styled-components"
     }
 }
