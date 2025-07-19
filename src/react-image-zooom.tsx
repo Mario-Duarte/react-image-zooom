@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, useCallback, useMemo, MouseEvent, TouchEvent } from "react";
 import styled, { keyframes } from "styled-components";
 
 const rotate = keyframes`
@@ -80,6 +79,29 @@ const Img = styled.img`
   display: block;
   `;
 
+export interface ImageZoom {
+  zoom?: string | number;
+  fullWidth?: boolean;
+  alt?: string;
+  width?: string | number;
+  height?: string | number;
+  src: string;
+  id?: string;
+  className?: string;
+  onError?: (error:ErrorEvent) => void;
+  errorContent?: React.ReactNode; 
+}
+
+type ImageZoomState = {
+  isZoomed: boolean;
+  position: string;
+  imgData: string | null;
+  error: boolean;
+  isOverflowHidden: boolean;
+  naturalWidth: number;
+  naturalHeight: number;
+}
+
 function ImageZoom({
   zoom = "200",
   fullWidth = false,
@@ -91,8 +113,8 @@ function ImageZoom({
   className,
   onError,
   errorContent = <ErrorText>There was a problem loading your image</ErrorText>
-}) {
-  const [state, setState] = useState({
+}:ImageZoom) {
+  const [state, setState] = useState<ImageZoomState>({
     isZoomed: false,
     position: "50% 50%",
     imgData: null,
@@ -104,21 +126,22 @@ function ImageZoom({
 
   const { position, imgData, error, isOverflowHidden } = state;
 
-  const zoomInPosition = useCallback((e) => {
+  const zoomInPosition = useCallback((e: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>) => {
     const zoomer = e.currentTarget.getBoundingClientRect();
-    let x, y;
+    let x:number, y:number;
 
     if (e.type === 'touchmove') {
       if (!isOverflowHidden) {
         setState(prev => ({ ...prev, isOverflowHidden: true }));
         document.body.style.overflow = "hidden";
       }
-      const touch = e.touches[0];
+      const touch = (e as TouchEvent).touches[0];
       x = ((touch.clientX - zoomer.x) / zoomer.width) * 100;
       y = ((touch.clientY - zoomer.y) / zoomer.height) * 100;
     } else {
-      x = ((e.clientX - zoomer.x) / zoomer.width) * 100;
-      y = ((e.clientY - zoomer.y) / zoomer.height) * 100;
+      const mouse = (e as MouseEvent);
+      x = ((mouse.clientX - zoomer.x) / zoomer.width) * 100;
+      y = ((mouse.clientY - zoomer.y) / zoomer.height) * 100;
     }
 
     setState(prev => ({
@@ -127,7 +150,7 @@ function ImageZoom({
     }));
   }, [isOverflowHidden]);
 
-  const handleClick = useCallback((e) => {
+  const handleClick = useCallback((e: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>) => {
     setState(prev => {
       const newIsZoomed = !prev.isZoomed;
       return {
@@ -139,7 +162,7 @@ function ImageZoom({
     if (!state.isZoomed) zoomInPosition(e);
   }, [zoomInPosition, state.isZoomed]);
 
-  const handleMove = useCallback((e) => {
+  const handleMove = useCallback((e: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>) => {
     if (state.isZoomed) {
       zoomInPosition(e);
     }
@@ -176,7 +199,7 @@ function ImageZoom({
       }, 200);
     };
 
-    const handleError = (error) => {
+    const handleError = (error:ErrorEvent) => {
       setState(prev => ({ ...prev, error: true }));
       onError?.(error);
     };
@@ -240,17 +263,4 @@ function ImageZoom({
   );
 }
 
-ImageZoom.propTypes = {
-  zoom: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  fullWidth: PropTypes.bool,
-  alt: PropTypes.string,
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  src: PropTypes.string.isRequired, // Prop src must be defined when using ImageZoom component
-  id: PropTypes.string,
-  className: PropTypes.string,
-  onError: PropTypes.func,
-  errorContent: PropTypes.node
-};
-
-export default React.memo(ImageZoom);
+export default ImageZoom;
