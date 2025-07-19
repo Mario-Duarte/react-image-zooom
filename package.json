@@ -10,7 +10,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-helmet": "^6.1.0",
-    "react-image-zooom": "^1.4",
+    "react-image-zooom": "^1.4.1",
     "react-scripts": "5.0.1",
     "styled-components": "^6.1.14",
     "web-vitals": "^4.2.4"
