@@ -6,5 +6,6 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'docs'
-  }
+  },
+  base: '/react-image-zooom/',
 })
