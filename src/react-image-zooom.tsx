@@ -261,3 +261,4 @@ function ImageZoom({
 }
 
 export default ImageZoom;
+export type { ImageZoomProps };

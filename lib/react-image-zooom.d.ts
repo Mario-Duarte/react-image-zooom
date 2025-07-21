@@ -13,3 +13,4 @@ interface ImageZoomProps {
 }
 declare function ImageZoom({ zoom, fullWidth, alt, width, height, src, id, className, onError, errorContent, }: ImageZoomProps): import("react/jsx-runtime").JSX.Element;
 export default ImageZoom;
+export type { ImageZoomProps };
