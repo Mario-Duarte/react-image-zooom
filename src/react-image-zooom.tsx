@@ -1,25 +1,39 @@
-import React, { useState, useEffect, useCallback, useMemo, MouseEvent, TouchEvent } from "react";
+import React, {
+  useState,
+  useCallback,
+  useMemo,
+  MouseEvent,
+  TouchEvent,
+  useRef,
+} from "react";
 import styled, { keyframes } from "styled-components";
+import usePreventBodyScroll from "./hooks/usePreventBodyScroll";
+import useCalculateZoom from "./hooks/useCalculateZoom";
+import useZoomPosition from "./hooks/useZoomPosition";
+import useImageLoader from "./hooks/useImageLoader";
 
 const rotate = keyframes`
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 `;
 
-const Figure = styled.figure`
+interface FigureProps {
+  $isZoomed: boolean;
+  $isLoaded: boolean;
+}
+
+const Figure = styled.figure<FigureProps>`
   position: relative;
   display: inline-block;
   width: auto;
-  min-height: 25vh;
+  min-height: ${({ $isLoaded }) => ($isLoaded ? "auto" : "25vh")};
   background-position: 50% 50%;
   background-color: #eee;
   margin: 0;
   overflow: hidden;
-  cursor: zoom-in;
-  img {
-    opacity: 0;
-    transition: opacity 0s ease-in-out;
-  }
+  cursor: ${({ $isZoomed }) => ($isZoomed ? "zoom-out" : "zoom-in")};
+  user-select: none;
+
   &:before {
     content: "";
     background-color: transparent;
@@ -29,7 +43,7 @@ const Figure = styled.figure`
     right: 0;
     width: 100%;
     height: 100%;
-    opacity: 1;
+    opacity: ${({ $isLoaded }) => ($isLoaded ? "0" : "1")};
     transition: opacity 0.2s ease-in-out;
     z-index: 1;
   }
@@ -46,40 +60,31 @@ const Figure = styled.figure`
     border-right-color: #333;
     border-bottom-color: #333;
     animation: ${rotate} 2s linear infinite;
-    opacity: 1;
+    opacity: ${({ $isLoaded }) => ($isLoaded ? "0" : "1")};
     transition: opacity 0.2s ease-in-out;
     z-index: 2;
-  }
-  &.loaded {
-    min-height: auto;
-    img {
-      opacity: 1;
-      transition: opacity 0.2s ease-in-out;
-    }
-    &:before {
-      opacity: 0;
-    }
-    &:after {
-      opacity: 0;
-    }
   }
 `;
 
 const ErrorText = styled.p`
-    width: 100%;
-    text-align: center;
-    border: 1px solid #f8f8f8;
-    padding: 8px 16px;
-    border-radius: 8px;
-    color: #555;
+  width: 100%;
+  text-align: center;
+  border: 1px solid #f8f8f8;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #555;
 `;
 
-const Img = styled.img`
-  transition: opacity 0.8s;
-  display: block;
-  `;
+interface ImgProps {
+  $isZoomed: boolean;
+}
 
-export interface ImageZoom {
+const Img = styled.img<ImgProps>`
+  opacity: ${({ $isZoomed }) => ($isZoomed ? "0" : "1")};
+  display: block;
+`;
+
+interface ImageZoomProps {
   zoom?: string | number;
   fullWidth?: boolean;
   alt?: string;
@@ -88,18 +93,8 @@ export interface ImageZoom {
   src: string;
   id?: string;
   className?: string;
-  onError?: (error:ErrorEvent) => void;
-  errorContent?: React.ReactNode; 
-}
-
-type ImageZoomState = {
-  isZoomed: boolean;
-  position: string;
-  imgData: string | null;
-  error: boolean;
-  isOverflowHidden: boolean;
-  naturalWidth: number;
-  naturalHeight: number;
+  onError?: (error: ErrorEvent) => void;
+  errorContent?: React.ReactNode;
 }
 
 function ImageZoom({
@@ -112,138 +107,140 @@ function ImageZoom({
   id,
   className,
   onError,
-  errorContent = <ErrorText>There was a problem loading your image</ErrorText>
-}:ImageZoom) {
-  const [state, setState] = useState<ImageZoomState>({
-    isZoomed: false,
-    position: "50% 50%",
-    imgData: null,
-    error: false,
-    isOverflowHidden: false,
-    naturalWidth: 0,
-    naturalHeight: 0
-  });
+  errorContent = <ErrorText>There was a problem loading your image</ErrorText>,
+}: ImageZoomProps) {
+  const [isZoomed, setIsZoomed] = useState<boolean>(false);
+  const [position, setPosition] = useState<string>("50% 50%");
+  const figureRef = useRef<HTMLElement>(null!);
+  const zoomInPosition = useZoomPosition(figureRef);
+  const isTouchEventRef = useRef(false);
+  usePreventBodyScroll(isZoomed, figureRef);
 
-  const { position, imgData, error, isOverflowHidden } = state;
+  const { imgData, error, naturalWidth } = useImageLoader(src, onError);
 
-  const zoomInPosition = useCallback((e: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>) => {
-    const zoomer = e.currentTarget.getBoundingClientRect();
-    let x:number, y:number;
+  const calculateZoom = useCalculateZoom(
+    zoom,
+    fullWidth,
+    naturalWidth,
+    figureRef
+  );
 
-    if (e.type === 'touchmove') {
-      if (!isOverflowHidden) {
-        setState(prev => ({ ...prev, isOverflowHidden: true }));
-        document.body.style.overflow = "hidden";
+  const toggleZoom = (
+    e: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>,
+    isTouchEvent: boolean,
+    isZoomed: boolean,
+    setIsZoomed: React.Dispatch<React.SetStateAction<boolean>>,
+    setPosition: React.Dispatch<React.SetStateAction<string>>,
+    zoomInPosition: (
+      e: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>
+    ) => string | undefined
+  ) => {
+    if (isTouchEvent) {
+      isTouchEventRef.current = true;
+    }
+
+    const newIsZoomed = !isZoomed;
+    setIsZoomed(newIsZoomed);
+
+    const newPosition = newIsZoomed ? zoomInPosition(e) : "50% 50%";
+    if (newPosition) {
+      setPosition(newPosition);
+    }
+  };
+
+  const updatePosition = (
+    e: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>,
+    isZoomed: boolean,
+    setPosition: React.Dispatch<React.SetStateAction<string>>,
+    zoomInPosition: (
+      e: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>
+    ) => string | undefined
+  ) => {
+    if (isZoomed) {
+      const newPosition = zoomInPosition(e);
+      if (newPosition) {
+        setPosition(newPosition);
       }
-      const touch = (e as TouchEvent).touches[0];
-      x = ((touch.clientX - zoomer.x) / zoomer.width) * 100;
-      y = ((touch.clientY - zoomer.y) / zoomer.height) * 100;
-    } else {
-      const mouse = (e as MouseEvent);
-      x = ((mouse.clientX - zoomer.x) / zoomer.width) * 100;
-      y = ((mouse.clientY - zoomer.y) / zoomer.height) * 100;
     }
+  };
 
-    setState(prev => ({
-      ...prev,
-      position: `${Math.max(0, Math.min(x, 100))}% ${Math.max(0, Math.min(y, 100))}%`
-    }));
-  }, [isOverflowHidden]);
+  const handleClick = useCallback(
+    (e: MouseEvent<HTMLElement>) => {
+      if (isTouchEventRef.current) {
+        isTouchEventRef.current = false;
+        return;
+      }
 
-  const handleClick = useCallback((e: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>) => {
-    setState(prev => {
-      const newIsZoomed = !prev.isZoomed;
-      return {
-        ...prev,
-        isZoomed: newIsZoomed,
-        ...(newIsZoomed && { position: prev.position })
-      };
-    });
-    if (!state.isZoomed) zoomInPosition(e);
-  }, [zoomInPosition, state.isZoomed]);
+      toggleZoom(e, false, isZoomed, setIsZoomed, setPosition, zoomInPosition);
+    },
+    [isZoomed, zoomInPosition]
+  );
 
-  const handleMove = useCallback((e: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>) => {
-    if (state.isZoomed) {
-      zoomInPosition(e);
-    }
-  }, [state.isZoomed, zoomInPosition]);
+  const handleTouchStart = useCallback(
+    (e: TouchEvent<HTMLElement>) => {
+      toggleZoom(e, true, isZoomed, setIsZoomed, setPosition, zoomInPosition);
+    },
+    [isZoomed, zoomInPosition]
+  );
+
+  const handleMove = useCallback(
+    (e: MouseEvent<HTMLElement>) => {
+      updatePosition(e, isZoomed, setPosition, zoomInPosition);
+    },
+    [isZoomed, zoomInPosition]
+  );
+
+  const handleTouchMove = useCallback(
+    (e: TouchEvent<HTMLElement>) => {
+      e.preventDefault();
+      isTouchEventRef.current = true;
+
+      if (isZoomed) {
+        updatePosition(e, isZoomed, setPosition, zoomInPosition);
+      } else {
+        handleTouchStart(e);
+      }
+    },
+    [handleTouchStart, isZoomed, zoomInPosition]
+  );
 
   const handleLeave = useCallback(() => {
-    setState(prev => ({
-      ...prev,
-      isZoomed: false,
-      position: "50% 50%",
-      isOverflowHidden: false
-    }));
-
-    document.body.style.overflow = "auto";  
+    isTouchEventRef.current = false;
+    setIsZoomed(false);
+    setPosition("50% 50%");
   }, []);
 
-  useEffect(() => {
-    setState(prev => ({ ...prev, imgData: null }));
+  const figureStyle = useMemo(
+    () => ({
+      backgroundImage: `url(${isZoomed && imgData ? imgData : ""})`,
+      backgroundSize: calculateZoom,
+      backgroundPosition: position,
+    }),
+    [isZoomed, imgData, calculateZoom, position]
+  );
 
-    if (!src) {
-      throw new Error("Prop src must be defined when using ImageZoom component!");
-    }
+  if (error) return <>{errorContent}</>;
 
-    const img = new Image();
-    const handleLoad = () => {
-      setTimeout(() => {
-        setState(prev => ({
-          ...prev,
-          isZoomed: false,
-          imgData: img.src,
-          naturalWidth: img.naturalWidth,
-          naturalHeight: img.naturalHeight
-        }));
-      }, 200);
-    };
-
-    const handleError = (error:ErrorEvent) => {
-      setState(prev => ({ ...prev, error: true }));
-      onError?.(error);
-    };
-
-    img.addEventListener("load", handleLoad);
-    img.addEventListener("error", handleError);
-
-    img.src = src;
-
-    return () => {
-      img.removeEventListener("load", handleLoad);
-      img.removeEventListener("error", handleError);
-    };
-  }, [src, onError]);
-
-  const calculateZoom = useMemo(() => {
-    if (!fullWidth || !state.naturalWidth) return `${zoom}%`;
-    
-    const containerWidth = document.querySelector('.fullImageZoom')?.clientWidth || 0;
-    if (!containerWidth) return `${zoom}%`;
-    
-    const zoomPercentage = (state.naturalWidth / containerWidth) * 100;
-    return `${zoomPercentage < 100 ? zoom : zoomPercentage}%`;
-  }, [zoom, fullWidth, state.naturalWidth]);
-
-  const figureStyle = useMemo(() => ({
-    backgroundImage: `url(${state.isZoomed && imgData ? imgData : ''})`,
-    backgroundSize: calculateZoom,
-    backgroundPosition: position,
-  }), [state.isZoomed, imgData, calculateZoom, position]);
-
-  if (error) return errorContent;
+  const figureClasses = [
+    imgData ? 'loaded' : 'loading',
+    isZoomed ? 'zoomed' : 'fullView',
+    className
+  ].filter(Boolean).join(' ');
 
   return (
     <Figure
+      ref={figureRef}
       id={id}
-      className={`${imgData ? 'loaded' : 'loading'} ${state.isZoomed ? 'zoomed' : 'fullView'} ${className}`}
+      className={figureClasses}
       style={figureStyle}
       onClick={handleClick}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      onTouchStart={handleClick}
-      onTouchMove={handleMove}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
       onTouchEnd={handleLeave}
+      $isLoaded={!!imgData}
+      $isZoomed={isZoomed}
       role="button"
       aria-label={`Zoomable image: ${alt}`}
       tabIndex={0}
@@ -254,9 +251,9 @@ function ImageZoom({
           id="imageZoom"
           src={imgData}
           alt={alt}
-          style={{ opacity: state.isZoomed ? 0 : 1 }}
           width={width}
           height={height}
+          $isZoomed={isZoomed}
         />
       )}
     </Figure>

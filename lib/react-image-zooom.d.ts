@@ -1,5 +1,5 @@
 import React from "react";
-export type ImageZoom = {
+interface ImageZoomProps {
     zoom?: string | number;
     fullWidth?: boolean;
     alt?: string;
@@ -10,6 +10,6 @@ export type ImageZoom = {
     className?: string;
     onError?: (error: ErrorEvent) => void;
     errorContent?: React.ReactNode;
-};
-declare function ImageZoom({ zoom, fullWidth, alt, width, height, src, id, className, onError, errorContent }: ImageZoom): string | number | bigint | boolean | Iterable<React.ReactNode> | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | import("react/jsx-runtime").JSX.Element | null;
+}
+declare function ImageZoom({ zoom, fullWidth, alt, width, height, src, id, className, onError, errorContent, }: ImageZoomProps): import("react/jsx-runtime").JSX.Element;
 export default ImageZoom;
