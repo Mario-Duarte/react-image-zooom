@@ -1,3 +1,2 @@
-/// <reference types="react" />
-declare function usePreventBodyScroll(isZoomed: boolean, elm?: React.RefObject<HTMLElement>): void;
+declare function usePreventBodyScroll(isZoomed: boolean, elm?: HTMLElement | null): void;
 export default usePreventBodyScroll;

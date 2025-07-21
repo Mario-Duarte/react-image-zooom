@@ -22,7 +22,6 @@ function useImageLoader(
     setState({ imgData: null, error: false, naturalWidth: 0, naturalHeight: 0 });
 
     if (!src) {
-      console.error("Prop src must be defined when using ImageZoom component!");
       setState((prev) => ({ ...prev, error: true }));
       return;
     }

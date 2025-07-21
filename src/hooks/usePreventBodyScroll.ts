@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 function usePreventBodyScroll(
   isZoomed: boolean,
-  elm?: React.RefObject<HTMLElement>
+  elm?: HTMLElement | null
 ) {
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
@@ -19,8 +19,7 @@ function usePreventBodyScroll(
   }, [isZoomed]);
 
   useEffect(() => {
-    const element = elm?.current;
-    if (!element) return;
+    if (!elm) return;
 
     const preventScroll = (e: TouchEvent) => {
       if (isZoomed) {
@@ -29,11 +28,11 @@ function usePreventBodyScroll(
     };
 
     if (isZoomed) {
-      element.addEventListener("touchmove", preventScroll, { passive: false });
+      elm.addEventListener("touchmove", preventScroll, { passive: false });
     }
 
     return () => {
-      element.removeEventListener("touchmove", preventScroll);
+      elm.removeEventListener("touchmove", preventScroll);
     };
   }, [isZoomed, elm]);
 }

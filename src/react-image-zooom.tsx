@@ -111,10 +111,10 @@ function ImageZoom({
 }: ImageZoomProps) {
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
   const [position, setPosition] = useState<string>("50% 50%");
-  const figureRef = useRef<HTMLElement>(null!);
-  const zoomInPosition = useZoomPosition(figureRef);
+  const figureRef = useRef<HTMLElement | null>(null);
+  const zoomInPosition = useZoomPosition(figureRef.current);
   const isTouchEventRef = useRef(false);
-  usePreventBodyScroll(isZoomed, figureRef);
+  usePreventBodyScroll(isZoomed, figureRef.current);
 
   const { imgData, error, naturalWidth } = useImageLoader(src, onError);
 
@@ -122,7 +122,7 @@ function ImageZoom({
     zoom,
     fullWidth,
     naturalWidth,
-    figureRef
+    figureRef.current
   );
 
   const toggleZoom = (

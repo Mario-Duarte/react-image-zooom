@@ -1,9 +1,9 @@
 import { useCallback, MouseEvent, TouchEvent } from "react";
 
-function useZoomPosition(figureRef: React.RefObject<HTMLElement>) {
+function useZoomPosition(figureRef?: HTMLElement | null) {
   return useCallback((e: MouseEvent<HTMLElement> | TouchEvent<HTMLElement>) => {
-    if (!figureRef.current) return;
-    const zoomer = figureRef.current.getBoundingClientRect();
+    if (!figureRef) return;
+    const zoomer = figureRef.getBoundingClientRect();
     let x: number, y: number;
 
     const isTouchEvent = (

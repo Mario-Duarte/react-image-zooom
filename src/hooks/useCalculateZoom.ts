@@ -4,12 +4,12 @@ function useCalculateZoom(
   zoom: string | number,
   fullWidth: boolean,
   naturalWidth: number,
-  containerRef?: React.RefObject<HTMLElement>
-): string | undefined {
+  containerRef?: HTMLElement | null
+): string {
 
   return useMemo(() => {
     if (!fullWidth || !naturalWidth) return `${zoom}%`;
-    const containerWidth = containerRef?.current?.clientWidth || 0;
+    const containerWidth = containerRef?.clientWidth || 0;
     if (!containerWidth) return `${zoom}%`;
 
     const zoomPercentage = (naturalWidth / containerWidth) * 100;
