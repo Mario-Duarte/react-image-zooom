@@ -5,7 +5,7 @@ function usePreventBodyScroll(
   elm?: HTMLElement | null
 ) {
   useEffect(() => {
-    const originalOverflow = document.body.style.overflow;
+    const originalOverflow = getComputedStyle(document.body).overflow || "auto";
     if (isZoomed) {
       document.body.style.overflow = "hidden";
     } else {
