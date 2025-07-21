@@ -5,6 +5,8 @@ import React, {
   MouseEvent,
   TouchEvent,
   useRef,
+  JSX,
+  isValidElement,
 } from "react";
 import styled, { keyframes } from "styled-components";
 import usePreventBodyScroll from "./hooks/usePreventBodyScroll";
@@ -94,7 +96,7 @@ interface ImageZoomProps {
   id?: string;
   className?: string;
   onError?: (error: ErrorEvent) => void;
-  errorContent?: React.ReactNode;
+  errorContent?: JSX.Element;
 }
 
 function ImageZoom({
@@ -107,8 +109,8 @@ function ImageZoom({
   id,
   className,
   onError,
-  errorContent = <ErrorText>There was a problem loading your image</ErrorText>,
-}: ImageZoomProps) {
+  errorContent,
+}: ImageZoomProps): JSX.Element {
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
   const [position, setPosition] = useState<string>("50% 50%");
   const figureRef = useRef<HTMLElement | null>(null);
@@ -219,13 +221,24 @@ function ImageZoom({
     [isZoomed, imgData, calculateZoom, position]
   );
 
-  if (error) return <>{errorContent}</>;
+  if (error)
+    return (
+      <>
+        {isValidElement(errorContent) ? (
+          errorContent
+        ) : (
+          <ErrorText>There was a problem loading your image</ErrorText>
+        )}
+      </>
+    );
 
   const figureClasses = [
-    imgData ? 'loaded' : 'loading',
-    isZoomed ? 'zoomed' : 'fullView',
-    className
-  ].filter(Boolean).join(' ');
+    imgData ? "loaded" : "loading",
+    isZoomed ? "zoomed" : "fullView",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <Figure

@@ -6,7 +6,9 @@ module.exports = {
   output: {
     path: path.resolve("lib"),
     filename: "react-image-zooom.js",
-    libraryTarget: "commonjs2",
+    library: "ReactImageZooom", 
+    libraryTarget: "umd", 
+    globalObject: "this",
   },
   optimization: {
     minimize: false,
@@ -24,7 +26,6 @@ module.exports = {
             options: {
               presets: ["@babel/preset-react", "@babel/preset-env"],
               plugins: [
-                ["babel-plugin-react-compiler", { target: "19" }],
                 "@babel/plugin-transform-react-jsx",
               ],
             },
