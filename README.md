@@ -35,6 +35,18 @@ It will have the class `loading` while the image is been preloaded and `loaded` 
 
 Additionally it will have the class `fullview` while the user has not initiated the zoom and `zoomed` once the user has taped/clicked in.
 
+### New to v1.5.0
+
+Migrated `ImageZoom` to typescript!
+
+This version also brings a full component refactor, migrating all the logic to React Hooks for better performance, readability and testability. The styling has also been updated to fully use `styled-components` features for a more robust and scalable solution.
+
+Bug fixes:
+- There was an issue on mobile where the zoom was been fired twice, this as now been fixed
+- On mobile it was possible to drag horizontally on the image to move the zoom position, but doing it vertically was very difficult as the page would scroll. This changes the `touchmove` event on mobile to have its passive option set to `false`
+- Updated transitions to avoid the white background flash when zooming out of an image
+- Updated cursor to `zoom-out` when image is zoomed in
+
 ### New to v1.4.0
 
 Performance updates and allowing to set the zoom level to the image with rather than percentage, this will calculate the correct percentage to display the image in its true size and default to the percentage if this value would be less than 100%.

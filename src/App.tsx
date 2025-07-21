@@ -23,7 +23,7 @@ function App() {
       <header>
         <h1>
           <img
-            src={process.env.PUBLIC_URL + "/logo48.png"}
+            src={import.meta.env.VITE_PUBLIC_URL + "/logo48.png"}
             alt="ImageZoom logo"
           />
           <br />
