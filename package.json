@@ -1,57 +1,54 @@
 {
-    "homepage": "https://mario-duarte.github.io/react-image-zooom/",
-    "name": "react-image-zooom",
-    "version": "1.4.1",
-    "main": "./lib/react-image-zooom.js",
-    "license": "GPL",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Mario-Duarte/ImageZoom"
-    },
-    "keywords": [
-        "react",
-        "zoom",
-        "image zoom",
-        "react image zoom",
-        "react zoom",
-        "react component",
-        "component"
-    ],
-    "scripts": {
-        "build": "webpack"
-    },
-    "peerDependencies": {
-        "react": "^17 || ^18 || ^19",
-        "react-dom": "^17 || ^18 || ^19",
-        "styled-components": "^5.3.6 || ^6"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.26.7",
-        "@babel/plugin-transform-react-jsx": "^7.25.9",
-        "@babel/preset-env": "^7.26.7",
-        "@babel/preset-react": "^7.26.3",
-        "babel-loader": "^9.2.1",
-        "eslint-plugin-react-hooks": "^5.1.0",
-        "path": "^0.12.7",
-        "prop-types": "^15.8.1",
-        "react": "^19",
-        "react-dom": "^19",
-        "react-scripts": "^5.0.1",
-        "styled-components": "^6.1.14",
-        "webpack": "^5.97.1",
-        "webpack-cli": "^6.0.1",
-        "babel-plugin-react-compiler": "^19.0.0-beta-714736e-20250131"
-    },
-    "author": {
-        "name": "Mario Duarte"
-    },
-    "babel": {
-        "presets": [
-            "@babel/preset-react",
-            "@babel/preset-env"
-        ],
-        "plugins": [
-            "@babel/plugin-transform-react-jsx"
-        ]
-    }
+  "homepage": "https://mario-duarte.github.io/react-image-zooom/",
+  "name": "react-image-zooom",
+  "author": {
+    "name": "Mario Duarte"
+  },
+  "version": "1.5.0",
+  "main": "./lib/react-image-zooom.js",
+  "types": "./lib/react-image-zooom.d.ts",
+  "module": "./lib/react-image-zooom.js",
+  "license": "GPL",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mario-Duarte/ImageZoom"
+  },
+  "keywords": [
+    "react",
+    "zoom",
+    "image zoom",
+    "react image zoom",
+    "react zoom",
+    "react component",
+    "component"
+  ],
+  "scripts": {
+    "build": "webpack && tsc --emitDeclarationOnly",
+    "type-check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^17 || ^18 || ^19",
+    "react-dom": "^17 || ^18 || ^19",
+    "styled-components": "^5.3.6 || ^6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.7",
+    "@babel/plugin-transform-react-jsx": "^7.25.9",
+    "@babel/preset-env": "^7.26.7",
+    "@babel/preset-react": "^7.26.3",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "babel-loader": "^9.2.1",
+    "babel-plugin-react-compiler": "^19.0.0-beta-714736e-20250131",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "path": "^0.12.7",
+    "react": "^19",
+    "react-dom": "^19",
+    "react-scripts": "^5.0.1",
+    "styled-components": "^6.1.14",
+    "ts-loader": "^9.5.2",
+    "typescript": "^4.9.5",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
+  } 
 }
