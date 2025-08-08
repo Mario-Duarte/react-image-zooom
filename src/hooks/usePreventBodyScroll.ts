@@ -22,7 +22,7 @@ function usePreventBodyScroll(
     if (!elm) return;
 
     const preventScroll = (e: TouchEvent) => {
-      if (isZoomed) {
+      if (isZoomed && e.touches.length === 1) {
         e.preventDefault();
       }
     };
