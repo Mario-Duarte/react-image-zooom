@@ -180,7 +180,9 @@ function ImageZoom({
 
   const handleTouchStart = useCallback(
     (e: TouchEvent<HTMLElement>) => {
-      toggleZoom(e, true, isZoomed, setIsZoomed, setPosition, zoomInPosition);
+      if (e.touches.length === 1) {
+        toggleZoom(e, true, isZoomed, setIsZoomed, setPosition, zoomInPosition);
+      }
     },
     [isZoomed, zoomInPosition]
   );
@@ -194,13 +196,15 @@ function ImageZoom({
 
   const handleTouchMove = useCallback(
     (e: TouchEvent<HTMLElement>) => {
-      e.preventDefault();
-      isTouchEventRef.current = true;
+      if (e.touches.length === 1) {
+        e.preventDefault();
+        isTouchEventRef.current = true;
 
-      if (isZoomed) {
-        updatePosition(e, isZoomed, setPosition, zoomInPosition);
-      } else {
-        handleTouchStart(e);
+        if (isZoomed) {
+          updatePosition(e, isZoomed, setPosition, zoomInPosition);
+        } else {
+          handleTouchStart(e);
+        }
       }
     },
     [handleTouchStart, isZoomed, zoomInPosition]

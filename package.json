@@ -4,7 +4,7 @@
   "author": {
     "name": "Mario Duarte"
   },
-  "version": "1.5.4",
+  "version": "1.5.5",
   "main": "./lib/react-image-zooom.js",
   "types": "./lib/react-image-zooom.d.ts",
   "module": "./lib/react-image-zooom.js",
