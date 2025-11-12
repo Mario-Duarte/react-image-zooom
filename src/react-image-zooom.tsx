@@ -96,7 +96,7 @@ interface ImageZoomProps {
   id?: string;
   className?: string;
   onError?: (error: ErrorEvent) => void;
-  errorContent?: JSX.Element;
+  errorContent?: React.ReactNode;
 }
 
 function ImageZoom({
@@ -225,16 +225,12 @@ function ImageZoom({
     [isZoomed, imgData, calculateZoom, position]
   );
 
-  if (error)
-    return (
-      <>
-        {isValidElement(errorContent) ? (
-          errorContent
-        ) : (
-          <ErrorText>There was a problem loading your image</ErrorText>
-        )}
-      </>
-    );
+  if (error) {
+    if (isValidElement(errorContent)) {
+      return errorContent;
+    }
+    return <ErrorText>There was a problem loading your image</ErrorText>;
+  }
 
   const figureClasses = [
     imgData ? "loaded" : "loading",
