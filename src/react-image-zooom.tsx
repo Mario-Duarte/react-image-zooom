@@ -96,7 +96,7 @@ interface ImageZoomProps {
   id?: string;
   className?: string;
   onError?: (error: ErrorEvent) => void;
-  errorContent?: JSX.Element | React.ReactNode;
+  errorContent?: React.ReactNode;
 }
 
 function ImageZoom({
