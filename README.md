@@ -128,6 +128,12 @@ This component accepts the following attributes:
 | alt       | "This is an imageZoom image" |    false |
 | width     |            "100%"            |    false |
 | height    |            "auto"            |    false |
+| classNames |          Null               | false |
+| onZoomChange |        Null                | false |
+
+`classNames` accepts an object with optional `wrapper` and `image` string properties to apply custom classes to the wrapper and image elements. 
+
+`onZoomChange` is an optional callback `(isZoomed: boolean) => void` invoked whenever the zoomed state changes.
 
 As you can see above, it is very similar to the standard `<img />` tag, now let's look at a more advanced example of a gallery using the component ([View on CodePen](https://codepen.io/MarioDesigns/pen/9a673471b4b45d2b0cf51f1c3f7e8429)).
 

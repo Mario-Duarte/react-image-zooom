@@ -95,8 +95,13 @@ interface ImageZoomProps {
   src: string;
   id?: string;
   className?: string;
+  classNames?: {
+    wrapper?: string;
+    image?: string;
+  };
   onError?: (error: ErrorEvent) => void;
   errorContent?: React.ReactNode;
+  onZoomChange?: (isZoomed: boolean) => void;
 }
 
 function ImageZoom({
@@ -108,8 +113,10 @@ function ImageZoom({
   src,
   id,
   className,
+  classNames,
   onError,
   errorContent,
+  onZoomChange,
 }: ImageZoomProps): JSX.Element {
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
   const [position, setPosition] = useState<string>("50% 50%");
@@ -147,6 +154,10 @@ function ImageZoom({
     const newPosition = newIsZoomed ? zoomInPosition(e) : "50% 50%";
     if (newPosition) {
       setPosition(newPosition);
+    }
+    
+    if (onZoomChange) {
+      onZoomChange(newIsZoomed);
     }
   };
 
@@ -214,7 +225,8 @@ function ImageZoom({
     isTouchEventRef.current = false;
     setIsZoomed(false);
     setPosition("50% 50%");
-  }, []);
+    onZoomChange?.(false);
+  }, [onZoomChange]);
 
   const figureStyle = useMemo(
     () => ({
@@ -236,6 +248,7 @@ function ImageZoom({
     imgData ? "loaded" : "loading",
     isZoomed ? "zoomed" : "fullView",
     className,
+    classNames?.wrapper,
   ]
     .filter(Boolean)
     .join(" ");
@@ -264,6 +277,7 @@ function ImageZoom({
           id="imageZoom"
           src={imgData}
           alt={alt}
+          className={classNames?.image}
           width={width}
           height={height}
           $isZoomed={isZoomed}
