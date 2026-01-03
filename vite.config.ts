@@ -20,7 +20,7 @@ export default defineConfig({
       fileName: (format) => `react-image-zooom.${format === 'es' ? 'mjs' : 'cjs'}`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: [/^react($|\/)/, /^react-dom($|\/)/],
       output: {
         globals: {
           react: 'React',
