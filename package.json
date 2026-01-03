@@ -5,7 +5,7 @@
     "name": "Mario Duarte"
   },
   "version": "1.6.0",
-  "types": "./dist/react-image-zooom.d.ts",
+
   "license": "GPL",
   "repository": {
     "type": "git",
