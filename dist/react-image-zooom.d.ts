@@ -1,4 +1,4 @@
-import { JSX } from 'react';
+import { default as React, JSX } from 'react';
 
 interface ImageZoomProps {
     zoom?: string | number;
@@ -10,7 +10,7 @@ interface ImageZoomProps {
     id?: string;
     className?: string;
     onError?: (error: ErrorEvent) => void;
-    errorContent?: JSX.Element;
+    errorContent?: React.ReactNode;
 }
 declare function ImageZoom({ zoom, fullWidth, alt, width, height, src, id, className, onError, errorContent, }: ImageZoomProps): JSX.Element;
 export default ImageZoom;

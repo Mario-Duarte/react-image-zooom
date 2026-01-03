@@ -24,7 +24,7 @@ interface ImageZoomProps {
   id?: string;
   className?: string;
   onError?: (error: ErrorEvent) => void;
-  errorContent?: JSX.Element;
+  errorContent?: React.ReactNode;
 }
 
 function ImageZoom({
@@ -108,7 +108,9 @@ function ImageZoom({
 
   const handleTouchStart = useCallback(
     (e: TouchEvent<HTMLElement>) => {
-      toggleZoom(e, true, isZoomed, setIsZoomed, setPosition, zoomInPosition);
+      if (e.touches.length === 1) {
+        toggleZoom(e, true, isZoomed, setIsZoomed, setPosition, zoomInPosition);
+      }
     },
     [isZoomed, zoomInPosition]
   );
@@ -122,13 +124,15 @@ function ImageZoom({
 
   const handleTouchMove = useCallback(
     (e: TouchEvent<HTMLElement>) => {
-      e.preventDefault();
-      isTouchEventRef.current = true;
+      if (e.touches.length === 1) {
+        e.preventDefault();
+        isTouchEventRef.current = true;
 
-      if (isZoomed) {
-        updatePosition(e, isZoomed, setPosition, zoomInPosition);
-      } else {
-        handleTouchStart(e);
+        if (isZoomed) {
+          updatePosition(e, isZoomed, setPosition, zoomInPosition);
+        } else {
+          handleTouchStart(e);
+        }
       }
     },
     [handleTouchStart, isZoomed, zoomInPosition]
@@ -149,18 +153,12 @@ function ImageZoom({
     [isZoomed, imgData, calculateZoom, position]
   );
 
-  if (error)
-    return (
-      <>
-        {isValidElement(errorContent) ? (
-          errorContent
-        ) : (
-          <p className="image-zooom-error">
-            There was a problem loading your image
-          </p>
-        )}
-      </>
-    );
+  if (error) {
+    if (isValidElement(errorContent)) {
+      return errorContent;
+    }
+    return <p className="image-zooom-error">There was a problem loading your image</p>;
+  }
 
   const figureClasses = [
     imgData ? "loaded" : "loading",
