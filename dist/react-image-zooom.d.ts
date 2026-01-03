@@ -1,4 +1,5 @@
-import { JSX } from "react";
+import { JSX } from 'react';
+
 interface ImageZoomProps {
     zoom?: string | number;
     fullWidth?: boolean;
