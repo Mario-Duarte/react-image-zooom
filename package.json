@@ -4,15 +4,14 @@
   "author": {
     "name": "Mario Duarte"
   },
-  "version": "1.5.6",
-  "main": "./lib/react-image-zooom.js",
-  "types": "./lib/react-image-zooom.d.ts",
-  "module": "./lib/react-image-zooom.js",
+  "version": "1.6.0",
+
   "license": "GPL",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Mario-Duarte/ImageZoom"
   },
+
   "keywords": [
     "react",
     "zoom",
@@ -23,39 +22,31 @@
     "component"
   ],
   "scripts": {
-    "build": "webpack && tsc --emitDeclarationOnly",
+    "build": "vite build",
     "type-check": "tsc --noEmit"
   },
   "peerDependencies": {
     "react": "^17 || ^18 || ^19",
-    "react-dom": "^17 || ^18 || ^19",
-    "styled-components": "^5.3.6 || ^6"
+    "react-dom": "^17 || ^18 || ^19"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.7",
-    "@babel/plugin-transform-react-jsx": "^7.25.9",
-    "@babel/preset-env": "^7.26.7",
-    "@babel/preset-react": "^7.26.3",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "babel-loader": "^9.2.1",
-    "babel-plugin-react-compiler": "^19.0.0-beta-714736e-20250131",
-    "eslint-plugin-react-hooks": "^5.1.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
     "path": "^0.12.7",
-    "react": "^19",
-    "react-dom": "^19",
-    "react-scripts": "^5.0.1",
-    "styled-components": "^6.1.14",
-    "ts-loader": "^9.5.2",
-    "typescript": "^4.9.5",
-    "webpack": "^5.97.1",
-    "webpack-cli": "^6.0.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.9.3",
+    "vite": "^5.3.5",
+    "vite-plugin-css-injected-by-js": "^3.5.2",
+    "vite-plugin-dts": "^3.9.1"
   },
   "exports": {
     ".": {
-      "import": "./lib/react-image-zooom.js",
-      "require": "./lib/react-image-zooom.js",
-      "types": "./lib/react-image-zooom.d.ts"
+      "import": "./dist/react-image-zooom.mjs",
+      "require": "./dist/react-image-zooom.cjs",
+      "types": "./dist/react-image-zooom.d.ts"
     }
   }
 }

@@ -8,83 +8,11 @@ import React, {
   JSX,
   isValidElement,
 } from "react";
-import styled, { keyframes } from "styled-components";
 import usePreventBodyScroll from "./hooks/usePreventBodyScroll";
 import useCalculateZoom from "./hooks/useCalculateZoom";
 import useZoomPosition from "./hooks/useZoomPosition";
 import useImageLoader from "./hooks/useImageLoader";
-
-const rotate = keyframes`
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-`;
-
-interface FigureProps {
-  $isZoomed: boolean;
-  $isLoaded: boolean;
-}
-
-const Figure = styled.figure<FigureProps>`
-  position: relative;
-  display: inline-block;
-  width: auto;
-  min-height: ${({ $isLoaded }) => ($isLoaded ? "auto" : "25vh")};
-  background-position: 50% 50%;
-  background-color: #eee;
-  margin: 0;
-  overflow: hidden;
-  cursor: ${({ $isZoomed }) => ($isZoomed ? "zoom-out" : "zoom-in")};
-  user-select: none;
-
-  &:before {
-    content: "";
-    background-color: transparent;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    opacity: ${({ $isLoaded }) => ($isLoaded ? "0" : "1")};
-    transition: opacity 0.2s ease-in-out;
-    z-index: 1;
-  }
-  &:after {
-    content: "";
-    position: absolute;
-    top: calc(50% - 25px);
-    left: calc(50% - 25px);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 5px solid transparent;
-    border-top-color: #333;
-    border-right-color: #333;
-    border-bottom-color: #333;
-    animation: ${rotate} 2s linear infinite;
-    opacity: ${({ $isLoaded }) => ($isLoaded ? "0" : "1")};
-    transition: opacity 0.2s ease-in-out;
-    z-index: 2;
-  }
-`;
-
-const ErrorText = styled.p`
-  width: 100%;
-  text-align: center;
-  border: 1px solid #f8f8f8;
-  padding: 8px 16px;
-  border-radius: 8px;
-  color: #555;
-`;
-
-interface ImgProps {
-  $isZoomed: boolean;
-}
-
-const Img = styled.img<ImgProps>`
-  opacity: ${({ $isZoomed }) => ($isZoomed ? "0" : "1")};
-  display: block;
-`;
+import "./react-image-zoom.css";
 
 interface ImageZoomProps {
   zoom?: string | number;
@@ -229,19 +157,20 @@ function ImageZoom({
     if (isValidElement(errorContent)) {
       return errorContent;
     }
-    return <ErrorText>There was a problem loading your image</ErrorText>;
+    return <p className="image-zooom-error">There was a problem loading your image</p>;
   }
 
   const figureClasses = [
     imgData ? "loaded" : "loading",
     isZoomed ? "zoomed" : "fullView",
+    "image-zooom",
     className,
   ]
     .filter(Boolean)
     .join(" ");
 
   return (
-    <Figure
+    <figure
       ref={figureRef}
       id={id}
       className={figureClasses}
@@ -252,24 +181,21 @@ function ImageZoom({
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleLeave}
-      $isLoaded={!!imgData}
-      $isZoomed={isZoomed}
       role="button"
       aria-label={`Zoomable image: ${alt}`}
       tabIndex={0}
     >
       {imgData && (
-        <Img
+        <img
           loading="lazy"
           id="imageZoom"
           src={imgData}
           alt={alt}
           width={width}
           height={height}
-          $isZoomed={isZoomed}
         />
       )}
-    </Figure>
+    </figure>
   );
 }
 
