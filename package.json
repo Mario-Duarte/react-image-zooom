@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/Mario-Duarte/ImageZoom"
   },
-  "type": "module",
+
   "keywords": [
     "react",
     "zoom",
