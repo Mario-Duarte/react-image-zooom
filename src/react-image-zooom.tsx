@@ -15,8 +15,8 @@ import useImageLoader from "./hooks/useImageLoader";
 import "./react-image-zoom.css";
 
 type ImageZoomClasses = {
-  root: string,
-  image: string,
+  root?: string,
+  image?: string,
 }
 
 interface ImageZoomProps {
@@ -29,7 +29,7 @@ interface ImageZoomProps {
   id?: string;
   className?: string;
   theme?: ImageZoomClasses;
-  onError?: (error: ErrorEvent) => void;
+  onError?: (error: Event) => void;
   errorContent?: React.ReactNode;
 }
 

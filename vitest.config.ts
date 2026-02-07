@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: "jsdom",
-    exclude: ["./dist", "./node_modules"],
+    exclude: ["**/dist/**", "**/node_modules/**"],
     coverage: {
       reporter: ["text", "json", "html"],
     },

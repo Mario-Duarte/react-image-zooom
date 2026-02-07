@@ -1,8 +1,8 @@
 import { default as React, JSX } from 'react';
 
 type ImageZoomClasses = {
-    root: string;
-    image: string;
+    root?: string;
+    image?: string;
 };
 interface ImageZoomProps {
     zoom?: string | number;
@@ -14,7 +14,7 @@ interface ImageZoomProps {
     id?: string;
     className?: string;
     theme?: ImageZoomClasses;
-    onError?: (error: ErrorEvent) => void;
+    onError?: (error: Event) => void;
     errorContent?: React.ReactNode;
 }
 /**

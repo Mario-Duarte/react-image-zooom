@@ -8,7 +8,7 @@
  *
  * @example
  * // Usage in tests:
- * const img = new useImageMock();
+ * const img = new MockImage();
  * img.setSrc('image.jpg');
  * img.onload?.();
  *

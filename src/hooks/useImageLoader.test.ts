@@ -27,7 +27,7 @@ describe("useImageLoader", () => {
   });
 
   it("should load image and update state on success", async () => {
-    const { result, rerender } = renderHook(({ src }) => useImageLoader(src), {
+    const { result } = renderHook(({ src }) => useImageLoader(src), {
       initialProps: { src: "test.jpg" },
     });
 
