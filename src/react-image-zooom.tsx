@@ -29,7 +29,7 @@ interface ImageZoomProps {
   id?: string;
   className?: string;
   theme?: ImageZoomClasses;
-  onError?: (error: Event) => void;
+  onError?: (error: Event | ErrorEvent) => void;
   errorContent?: React.ReactNode;
 }
 
