@@ -35,6 +35,14 @@ It will have the class `loading` while the image is been preloaded and `loaded` 
 
 Additionally it will have the class `fullview` while the user has not initiated the zoom and `zoomed` once the user has taped/clicked in.
 
+## New to v1.6.0
+
+- Migrated build system to Vite for faster builds and modern development experience.
+- TypeScript declaration files are now generated automatically and included in the package.
+- Improved compatibility with React 17, 18, and 19 via updated peer dependencies.
+- CSS is now injected automatically with the build, simplifying usage and integration.
+- Internal codebase refactoring for better maintainability and performance.
+
 ## New to v1.5.5
 
 On touch enabled devices users can interact with one finger to zoom in and move the zoom location by dragging the finder on the image, this will disable the scrolling.
