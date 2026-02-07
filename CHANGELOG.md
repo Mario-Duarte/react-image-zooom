@@ -1,3 +1,11 @@
+## New to v1.7.0
+
+- Improved accessibility: `figure` now uses `role="button"` and `tabIndex=0` for keyboard navigation.
+- Added `theme` prop for custom root and image class styling.
+- Enhanced error handling: custom `errorContent` can be rendered on image load failure.
+- Refactored internal hooks for better testability and maintainability.
+- Updated documentation and examples.
+
 ## New to v1.6.0
 
 - Migrated build system to Vite for faster builds and modern development experience.

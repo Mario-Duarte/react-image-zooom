@@ -35,13 +35,13 @@ It will have the class `loading` while the image is been preloaded and `loaded` 
 
 Additionally it will have the class `fullview` while the user has not initiated the zoom and `zoomed` once the user has taped/clicked in.
 
-## New to v1.6.0
+## New to v1.7.0
 
-- Migrated build system to Vite for faster builds and modern development experience.
-- TypeScript declaration files are now generated automatically and included in the package.
-- Improved compatibility with React 17, 18, and 19 via updated peer dependencies.
-- CSS is now injected automatically with the build, simplifying usage and integration.
-- Internal codebase refactoring for better maintainability and performance.
+- Improved accessibility: `figure` now uses `role="button"` and `tabIndex=0` for keyboard navigation.
+- Added `theme` prop for custom root and image class styling.
+- Enhanced error handling: custom `errorContent` can be rendered on image load failure.
+- Refactored internal hooks for better testability and maintainability.
+- Updated documentation and examples.
 
 [View changelog](https://github.com/Mario-Duarte/react-image-zooom/blob/master/CHANGELOG.md) for previous release notes.
 
