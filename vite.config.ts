@@ -9,6 +9,11 @@ export default defineConfig({
     react(),
     dts({
       insertTypesEntry: true,
+      exclude: [
+        '**/*.test.ts',
+        '**/*.test.tsx',
+        'src/testUtils/**'
+      ],
     }),
     cssInjectedByJsPlugin(),
   ],

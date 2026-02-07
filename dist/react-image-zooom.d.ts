@@ -1,5 +1,9 @@
 import { default as React, JSX } from 'react';
 
+type ImageZoomClasses = {
+    root: string;
+    image: string;
+};
 interface ImageZoomProps {
     zoom?: string | number;
     fullWidth?: boolean;
@@ -8,10 +12,10 @@ interface ImageZoomProps {
     height?: string | number;
     src: string;
     id?: string;
-    className?: string;
+    theme?: ImageZoomClasses;
     onError?: (error: ErrorEvent) => void;
     errorContent?: React.ReactNode;
 }
-declare function ImageZoom({ zoom, fullWidth, alt, width, height, src, id, className, onError, errorContent, }: ImageZoomProps): JSX.Element;
+declare function ImageZoom({ zoom, fullWidth, alt, width, height, src, id, theme, onError, errorContent, }: ImageZoomProps): JSX.Element;
 export default ImageZoom;
 export type { ImageZoomProps };

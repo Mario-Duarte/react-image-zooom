@@ -36,7 +36,7 @@ describe("ImageZoom component", () => {
         width={123}
         height={456}
         id="custom-id"
-      />
+      />,
     );
     const imgInstance = (window.Image as any).mock.instances[0];
     await act(async () => {
@@ -46,14 +46,16 @@ describe("ImageZoom component", () => {
     expect(img.getAttribute("width")).toBe("123");
     expect(img.getAttribute("height")).toBe("456");
     const buttons = screen.getAllByRole("button");
-    const customButton = buttons.find(btn => btn.getAttribute("id") === "custom-id");
+    const customButton = buttons.find(
+      (btn) => btn.getAttribute("id") === "custom-id",
+    );
     expect(customButton).not.toBeNull();
     expect(customButton!.getAttribute("id")).toBe("custom-id");
   });
 
   it("applies theme classes if provided", async () => {
     render(
-      <ImageZoom src="test.jpg" theme={{ root: "my-root", image: "my-img" }} />
+      <ImageZoom src="test.jpg" theme={{ root: "my-root", image: "my-img" }} />,
     );
     const imgInstance = (window.Image as any).mock.instances[0];
     await act(async () => {
@@ -84,12 +86,12 @@ describe("ImageZoom component", () => {
   });
 
   it("calls onError callback if image fails to load", async () => {
-  const onError = vi.fn();
-  render(<ImageZoom src="bad.jpg" onError={onError} />);
-  const imgInstance = (window.Image as any).mock.instances[0];
-  await act(async () => {
-    if (imgInstance.onerror) imgInstance.onerror(new Event("error"));
+    const onError = vi.fn();
+    render(<ImageZoom src="bad.jpg" onError={onError} />);
+    const imgInstance = (window.Image as any).mock.instances[0];
+    await act(async () => {
+      if (imgInstance.onerror) imgInstance.onerror(new Event("error"));
+    });
+    expect(onError).toHaveBeenCalled();
   });
-  expect(onError).toHaveBeenCalled();
-});
 });

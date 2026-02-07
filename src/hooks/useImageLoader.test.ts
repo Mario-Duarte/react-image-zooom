@@ -77,7 +77,7 @@ describe("useImageLoader", () => {
     });
 
     expect(result.current.imgData).toBe("first.jpg");
-    
+
     rerender({ src: "second.jpg" });
     expect(result.current).toEqual({
       imgData: null,
