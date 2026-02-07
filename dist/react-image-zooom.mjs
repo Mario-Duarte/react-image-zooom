@@ -77,9 +77,6 @@ function _({
   height: r = "auto",
   src: u,
   id: s,
-  /**
-   * @deprecated Use the `theme` prop instead for custom styling.
-   */
   className: g,
   theme: l,
   onError: W,

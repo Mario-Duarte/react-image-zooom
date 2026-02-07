@@ -27,6 +27,9 @@ interface ImageZoomProps {
   height?: string | number;
   src: string;
   id?: string;
+  /**
+   * @deprecated Use the `theme` prop instead for custom styling.
+   */
   className?: string;
   theme?: ImageZoomClasses;
   onError?: (error: Event | ErrorEvent) => void;
@@ -61,9 +64,6 @@ function ImageZoom({
   height = "auto",
   src,
   id,
-  /**
-   * @deprecated Use the `theme` prop instead for custom styling.
-   */
   className,
   theme,
   onError,
@@ -232,4 +232,4 @@ function ImageZoom({
 }
 
 export default ImageZoom;
-export type { ImageZoomProps };
+export type { ImageZoomProps, ImageZoomClasses };

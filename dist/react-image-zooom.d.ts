@@ -12,6 +12,9 @@ interface ImageZoomProps {
     height?: string | number;
     src: string;
     id?: string;
+    /**
+     * @deprecated Use the `theme` prop instead for custom styling.
+     */
     className?: string;
     theme?: ImageZoomClasses;
     onError?: (error: Event | ErrorEvent) => void;
@@ -36,10 +39,6 @@ interface ImageZoomProps {
  * @param errorContent - Optional custom content to display when an error occurs.
  * @returns A JSX element rendering the zoomable image.
  */
-declare function ImageZoom({ zoom, fullWidth, alt, width, height, src, id, 
-/**
- * @deprecated Use the `theme` prop instead for custom styling.
- */
-className, theme, onError, errorContent, }: ImageZoomProps): JSX.Element;
+declare function ImageZoom({ zoom, fullWidth, alt, width, height, src, id, className, theme, onError, errorContent, }: ImageZoomProps): JSX.Element;
 export default ImageZoom;
-export type { ImageZoomProps };
+export type { ImageZoomProps, ImageZoomClasses };

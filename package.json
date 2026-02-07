@@ -22,7 +22,8 @@
   "scripts": {
     "build": "vite build",
     "type-check": "tsc --noEmit",
-    "test": "vitest"
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "peerDependencies": {
     "react": "^17 || ^18 || ^19",
