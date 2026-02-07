@@ -104,6 +104,10 @@ To install this on your project run the following command on your terminal:<br/>
 Alternatively you can also install using yarn:<br/>
 `yarn add react-image-zooom`
 
+**Note:** CSS is injected automatically with the build. You do not need to import any CSS files manually.
+
+**TypeScript:** Type definitions are included automatically. No need to install `@types/react-image-zooom`.
+
 ## How to Use
 
 Here is a basic example of how to import and use this component ([View on CodePen](https://codepen.io/MarioDesigns/pen/7ab69fcd17d811f63a58ab87234ad0a8)):
@@ -132,7 +136,7 @@ This component accepts the following attributes:
 | id        |             Null             |    false |
 | src       |             Null             |     true |
 | zoom      |             200              |    false |
-| fullWifth  |            false              |   false |
+| fullWidth |            false             |    false |
 | alt       | "This is an imageZoom image" |    false |
 | width     |            "100%"            |    false |
 | height    |            "auto"            |    false |
@@ -162,4 +166,4 @@ For more examples [see this demo page!](https://mario-duarte.github.io/react-ima
 
 ## Bugs and issues
 
-Please report all bugs and issues [here](git@github.com:Mario-Duarte/react-image-zooom.git/issues).
+Please report all bugs and issues [here](https://github.com/Mario-Duarte/react-image-zooom/issues).
