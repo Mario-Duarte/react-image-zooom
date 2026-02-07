@@ -14,6 +14,11 @@ import useZoomPosition from "./hooks/useZoomPosition";
 import useImageLoader from "./hooks/useImageLoader";
 import "./react-image-zoom.css";
 
+type ImageZoomClasses = {
+  root: string,
+  image: string,
+}
+
 interface ImageZoomProps {
   zoom?: string | number;
   fullWidth?: boolean;
@@ -22,7 +27,7 @@ interface ImageZoomProps {
   height?: string | number;
   src: string;
   id?: string;
-  className?: string;
+  theme?: ImageZoomClasses;
   onError?: (error: ErrorEvent) => void;
   errorContent?: React.ReactNode;
 }
@@ -35,7 +40,7 @@ function ImageZoom({
   height = "auto",
   src,
   id,
-  className,
+  theme,
   onError,
   errorContent,
 }: ImageZoomProps): JSX.Element {
@@ -164,7 +169,7 @@ function ImageZoom({
     imgData ? "loaded" : "loading",
     isZoomed ? "zoomed" : "fullView",
     "image-zooom",
-    className,
+    theme?.root,
   ]
     .filter(Boolean)
     .join(" ");
@@ -189,6 +194,7 @@ function ImageZoom({
         <img
           loading="lazy"
           id="imageZoom"
+          className={theme?.image}
           src={imgData}
           alt={alt}
           width={width}
