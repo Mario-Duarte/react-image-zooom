@@ -16,8 +16,9 @@
     "noEmit": false,
     "jsx": "react-jsx",
     "declaration": true,
-    "outDir": "./lib"
+    "outDir": "./lib",
+    "types": ["vitest"]
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "lib"]
+  "include": ["src", "src/testUtils"],
+  "exclude": ["node_modules", "lib", "src/testUtils", "*.test.tsx", "*.test.ts"]
 }
