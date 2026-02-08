@@ -27,7 +27,7 @@ Want to come along on this journey and/or have some great ideas on how to improv
 
 ## How it works?
 
-This component has a very minimal styling footprint only setting the minimum to make it work, in addition you can pass in your own `className` and `id` props enabling you to adapt the design to your needs.
+This component has a very minimal styling footprint only setting the minimum to make it work, in addition you can pass in your own classes via the `theme` and `id` props enabling you to adapt the design to your needs.
 
 For extra customization of the style of this component it will also add some extra classes dynamically depending on its state.
 
@@ -81,7 +81,8 @@ This component accepts the following attributes:
 
 | Prop      |        Default value         | required |
 | --------- | :--------------------------: | -------: |
-| className |             Null             |    false |
+| className (deprecated) |             Null             |    false |
+| theme     |          undefined           |    false |
 | id        |             Null             |    false |
 | src       |             Null             |     true |
 | zoom      |             200              |    false |
@@ -99,10 +100,10 @@ import ImageZoom from "react-image-zooom";
 function myZoomableImg() {
   return (
     <ul className="myGallery">
-        <li><ImageZoom className="myGalleryImg" src="https://picsum.photos/seed/001/1920/1080" alt="My gallery image 1" zoom="300"/></li>
-        <li><ImageZoom className="myGalleryImg" src="https://picsum.photos/seed/002/1920/1080" alt="My gallery image 2" zoom="200"/></li>
-        <li><ImageZoom className="myGalleryImg" src="https://picsum.photos/seed/003/1920/1080" alt="My gallery image 3" zoom="200"/></li>
-        <li><ImageZoom className="myGalleryImg" src="https://picsum.photos/seed/004/1920/1080" alt="My gallery image 4" zoom="300"/></li>
+        <li><ImageZoom theme="{{root: "galleryItem", image: "myGalleryImg"}}" src="https://picsum.photos/seed/001/1920/1080" alt="My gallery image 1" zoom="300"/></li>
+        <li><ImageZoom theme="{{root: "galleryItem", image: "myGalleryImg"}}" src="https://picsum.photos/seed/002/1920/1080" alt="My gallery image 2" zoom="200"/></li>
+        <li><ImageZoom theme="{{root: "galleryItem", image: "myGalleryImg"}}" src="https://picsum.photos/seed/003/1920/1080" alt="My gallery image 3" zoom="200"/></li>
+        <li><ImageZoom theme="{{root: "galleryItem", image: "myGalleryImg"}}" src="https://picsum.photos/seed/004/1920/1080" alt="My gallery image 4" zoom="300"/></li>
     </ul>
   );
 }
